@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CALOTTÉ — Contemporary Luxury Streetwear</title>
+<meta name="description" content="Discover CALOTTÉ, a contemporary streetwear label defined by considered silhouettes, distinctive details, and a refined black-and-gold aesthetic." />
+<meta property="og:title" content="CALOTTÉ — Contemporary Luxury Streetwear" />
+<meta property="og:description" content="Considered silhouettes, distinctive details, and a refined black-and-gold aesthetic." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..800&family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23080808'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='60' fill='%23C5A05A' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT ============ -->
+<div class="announcement">
+  <p>CALOTTÉ — THE COUTURE EXPERIENCE</p>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <button class="icon-btn mobile-only" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+
+    <a href="#/" class="logo" aria-label="CALOTTÉ home">CALOTTÉ</a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="#/" data-nav="home">Home</a>
+      <a href="#/shop" data-nav="shop">Shop</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+          Categories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="#/shop?cat=t-shirts" role="menuitem">01 — T-SHIRTS</a>
+          <a href="#/shop?cat=hoodies" role="menuitem">02 — HOODIES</a>
+          <a href="#/shop?cat=oversized" role="menuitem">03 — OVERSIZED</a>
+          <a href="#/shop?cat=jeans" role="menuitem">04 — JEANS</a>
+        </div>
+      </div>
+      <a href="#/about" data-nav="about">About Us</a>
+      <a href="#/wishlist" data-nav="wishlist">Wishlist</a>
+      <a href="#/contact" data-nav="contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="search-toggle" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <a href="#/wishlist" class="icon-btn badge-wrap" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 000-7.8z"/></svg>
+        <span class="badge" id="wishlist-badge" hidden>0</span>
+      </a>
+      <button class="icon-btn badge-wrap" id="cart-toggle" aria-label="Shopping bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2l-2 5v13a2 2 0 002 2h12a2 2 0 002-2V7l-2-5z"/><path d="M4 7h16M16 11a4 4 0 01-8 0"/></svg>
+        <span class="badge" id="cart-badge" hidden>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE NAV DRAWER ============ -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-head">
+      <span class="logo">CALOTTÉ</span>
+      <button class="icon-btn" id="menu-close" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <hr class="gold-line"/>
+    <nav class="mobile-nav-links" aria-label="Mobile primary">
+      <a href="#/">Home</a>
+      <a href="#/shop">Shop</a>
+      <a href="#/shop?cat=t-shirts">T-Shirts</a>
+      <a href="#/shop?cat=hoodies">Hoodies</a>
+      <a href="#/shop?cat=oversized">Oversized</a>
+      <a href="#/shop?cat=jeans">Jeans</a>
+      <a href="#/about">About Us</a>
+      <a href="#/wishlist">Wishlist</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ============ MAIN ============ -->
+<main id="app">
+
+  <!-- ========== HOME VIEW ========== -->
+  <div class="view" data-view="home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" alt="CALOTTÉ campaign" />
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">CALOTTÉ — THE COUTURE EXPERIENCE</p>
+        <h1 class="hero-title">CALOTTÉ</h1>
+        <p class="hero-sub">Define your style. Embrace luxury in every contour.</p>
+        <div class="hero-cta">
+          <a href="#/shop" class="btn btn-gold">Explore Collection</a>
+          <a href="#/campaign" class="btn btn-outline">View Campaign</a>
+        </div>
+      </div>
+      <div class="container hero-foot">
+        <span>The Debut Drop — Coming Soon</span>
+        <span class="hide-sm">Scroll</span>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits">
+      <div class="benefits-grid">
+        <div class="benefit"><span class="benefit-num">01</span><h3>Premium Quality</h3><p>Considered fabrics and refined construction.</p></div>
+        <div class="benefit"><span class="benefit-num">02</span><h3>Modern Fashion</h3><p>Contemporary streetwear silhouettes.</p></div>
+        <div class="benefit"><span class="benefit-num">03</span><h3>Comfort First</h3><p>Comfortable, thoughtfully selected materials.</p></div>
+        <div class="benefit"><span class="benefit-num">04</span><h3>Signature Fit</h3><p>Relaxed, oversized and versatile proportions.</p></div>
+        <div class="benefit"><span class="benefit-num">05</span><h3>Made to Stand Out</h3><p>Distinctive design details.</p></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">SHOP BY CATEGORY</p>
+            <h2 class="display">THE ANTHOLOGY</h2>
+          </div>
+          <div class="filters" id="home-cat-filters">
+            <button class="filter active" data-cat="all">ALL CAPSULES</button>
+            <button class="filter" data-cat="t-shirts">CAPTURE</button>
+            <button class="filter" data-cat="hoodies">EMBRACE</button>
+            <button class="filter" data-cat="oversized">CONTOUR</button>
+            <button class="filter" data-cat="jeans">STRUCTURE</button>
+          </div>
+        </div>
+
+        <div class="category-grid" id="category-grid">
+          <a href="#/shop?cat=t-shirts" class="cat-card" data-cat="t-shirts">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80" alt="T-Shirts" loading="lazy" />
+            <div class="cat-card-overlay"></div>
+            <div class="cat-card-info">
+              <div class="cat-row"><span class="cat-num">01 / CAPTURE</span><span class="cat-arrow">→</span></div>
+              <h3>T-SHIRTS</h3>
+              <p>Structured essentials, refined graphics, and considered details.</p>
+              <span class="cat-cta">SHOP COLLECTION</span>
+            </div>
+          </a>
+          <a href="#/shop?cat=hoodies" class="cat-card" data-cat="hoodies">
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=80" alt="Hoodies" loading="lazy" />
+            <div class="cat-card-overlay"></div>
+            <div class="cat-card-info">
+              <div class="cat-row"><span class="cat-num">02 / EMBRACE</span><span class="cat-arrow">→</span></div>
+              <h3>HOODIES</h3>
+              <p>Statement layers with substantial silhouettes and elevated finishing.</p>
+              <span class="cat-cta">SHOP COLLECTION</span>
+            </div>
+          </a>
+          <a href="#/shop?cat=oversized" class="cat-card" data-cat="oversized">
+            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80" alt="Oversized" loading="lazy" />
+            <div class="cat-card-overlay"></div>
+            <div class="cat-card-info">
+              <div class="cat-row"><span class="cat-num">03 / CONTOUR</span><span class="cat-arrow">→</span></div>
+              <h3>OVERSIZED</h3>
+              <p>Relaxed boxy proportions and contemporary streetwear styling.</p>
+              <span class="cat-cta">SHOP COLLECTION</span>
+            </div>
+          </a>
+          <a href="#/shop?cat=jeans" class="cat-card" data-cat="jeans">
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=80" alt="Jeans" loading="lazy" />
+            <div class="cat-card-overlay"></div>
+            <div class="cat-card-info">
+              <div class="cat-row"><span class="cat-num">04 / STRUCTURE</span><span class="cat-arrow">→</span></div>
+              <h3>JEANS</h3>
+              <p>Versatile denim with considered cuts and distinctive details.</p>
+              <span class="cat-cta">SHOP COLLECTION</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">MODERN ESSENTIALS</p>
+            <h2 class="display">FEATURED PIECES</h2>
+          </div>
+          <label class="sort-label">
+            Sort
+            <select id="featured-sort">
+              <option value="featured">Featured</option>
+              <option value="newest">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </label>
+        </div>
+        <p class="lede">A considered edit of CALOTTÉ essentials. Every piece is marked coming soon while the debut collection is in production.</p>
+        <div class="product-grid" id="featured-grid"></div>
+      </div>
+    </section>
+
+    <!-- CRAFTSMANSHIP -->
+    <section class="craft">
+      <div class="craft-img">
+        <img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1200&q=80" alt="Fabric and stitching detail" loading="lazy" />
+      </div>
+      <div class="craft-copy">
+        <p class="eyebrow">CRAFTED WITH INTENTION</p>
+        <h2 class="display">THE ART OF THE DETAIL</h2>
+        <p>Every CALOTTÉ piece begins with a considered silhouette, a refined visual language, and an appreciation for the details that make a garment distinctive.</p>
+        <p class="gold-label">CRAFTED IN INDIA</p>
+        <hr class="gold-short"/>
+        <p class="muted">CALOTTÉ will operate through considered, limited releases. Join the launch list to be notified when the first collection becomes available.</p>
+      </div>
+    </section>
+
+    <!-- HERITAGE -->
+    <section class="section">
+      <div class="container heritage-grid">
+        <div>
+          <p class="eyebrow">OUR HERITAGE</p>
+          <h2 class="display">CALOTTÉ</h2>
+          <hr class="gold-short"/>
+          <div class="metrics">
+            <div><span>01</span><p>Considered Design</p></div>
+            <div><span>02</span><p>Distinctive Silhouettes</p></div>
+            <div><span>03</span><p>Limited Collections</p></div>
+          </div>
+          <a href="#/about" class="btn btn-outline">Discover the Brand</a>
+        </div>
+        <div class="heritage-copy">
+          <p>CALOTTÉ exists at the intersection of contemporary streetwear and considered design. Built around expressive silhouettes, restrained detailing, and a distinctive black-and-gold visual language, the label approaches everyday clothing with an editorial point of view.</p>
+          <p>Our focus is on the relationship between fit, texture, proportion, and detail. Every collection is an opportunity to explore a more considered approach to modern dressing.</p>
+          <p class="quote">CALOTTÉ is designed for those who value individuality without excess.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAUNCH -->
+    <section class="launch">
+      <div class="container launch-grid">
+        <div>
+          <p class="eyebrow">EXCLUSIVE RELEASE</p>
+          <h2 class="display">THE DEBUT DROP</h2>
+          <p>A new expression of modern streetwear is taking shape. Discover the first CALOTTÉ collection, where considered silhouettes meet distinctive detailing.</p>
+          <p class="gold-label">COMING SOON — JOIN THE LAUNCH LIST</p>
+        </div>
+        <div class="launch-form-wrap">
+          <h3 class="eyebrow">Notify Me on Launch</h3>
+          <p class="muted small">Enter your email address to receive a single launch notification. We will not share your address.</p>
+          <form class="notify-form" data-form="notify" novalidate>
+            <input type="email" name="email" placeholder="Email address" autocomplete="email" required />
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <label class="check">
+              <input type="checkbox" name="consent" required />
+              <span>I consent to CALOTTÉ storing my email address for a single launch notification.</span>
+            </label>
+            <button type="submit" class="btn btn-gold full">Notify Me on Launch</button>
+            <p class="form-msg" data-msg></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">CONCIERGE REVIEWS</p>
+          <h2 class="display">THE CALOTTÉ COMMUNITY</h2>
+          <p class="muted small mt-3">The reviews below are clearly labelled development placeholders. They will be replaced with genuine, permissioned customer feedback.</p>
+        </div>
+        <div class="review-grid">
+          <figure class="review">
+            <div class="gold-bar"></div>
+            <blockquote>"A considered silhouette and the gold detail is beautifully restrained. This is how modern luxury should feel."</blockquote>
+            <figcaption>
+              <p class="name">A. M.</p>
+              <p class="meta">Royal Gold Crest Tee — Mumbai</p>
+              <p class="note">Sample review — not a verified purchase.</p>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="gold-bar"></div>
+            <blockquote>"The weight of the hoodie and the finishing feel premium. I appreciate that the branding is understated."</blockquote>
+            <figcaption>
+              <p class="name">R. K.</p>
+              <p class="meta">Couture Heavyweight Hoodie — New Delhi</p>
+              <p class="note">Sample review — not a verified purchase.</p>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="gold-bar"></div>
+            <blockquote>"The denim has a strong structure and the stitching detail is distinctive without being loud."</blockquote>
+            <figcaption>
+              <p class="name">S. I.</p>
+              <p class="meta">Gold-Stitch Denim — Bengaluru</p>
+              <p class="note">Sample review — not a verified purchase.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container faq-grid">
+        <div>
+          <p class="eyebrow">CUSTOMER SERVICE</p>
+          <h2 class="display">THE DISCOURSE</h2>
+          <p class="muted small mt-4">Draft answers for the pre-launch period. Policies marked as pending must be confirmed before orders are accepted.</p>
+        </div>
+        <div class="faq-list" id="faq-list"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">GET IN TOUCH</p>
+          <h2 class="display">THE CALOTTÉ STUDIO</h2>
+          <p class="muted">For questions about our collections, product details, sizing, or upcoming releases, our team is here to help.</p>
+          <div class="contact-info">
+            <div><span class="gold-label">STUDIO</span><p>New Delhi, India — by appointment only (placeholder)</p></div>
+            <div><span class="gold-label">CONCIERGE</span><a href="mailto:concierge@calotte.com">concierge@calotte.com</a></div>
+            <div><span class="gold-label">INSTAGRAM</span><a href="https://instagram.com/calotte.official" target="_blank" rel="noreferrer">@calotte.official</a></div>
+            <div><span class="gold-label">RESPONSE WINDOW</span><p>To be confirmed at launch</p></div>
+          </div>
+          <p class="notice">Studio address, response window, and map will be updated only when a confirmed CALOTTÉ location is operational. No map is displayed until a real address is supplied.</p>
+        </div>
+        <div class="contact-form-wrap">
+          <h3 class="eyebrow">Send Your Inquiry</h3>
+          <form class="contact-form" data-form="contact" novalidate>
+            <label>Full Name<input type="text" name="name" required minlength="2" autocomplete="name" /></label>
+            <label>Email Address<input type="email" name="email" required autocomplete="email" /></label>
+            <label>Inquiry Type
+              <select name="subject" required>
+                <option value="">Select an inquiry</option>
+                <option value="collection">Collection Question</option>
+                <option value="sizing">Sizing and Fit</option>
+                <option value="launch">Launch Information</option>
+                <option value="press">Press or Collaboration</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <label>Message<textarea name="message" rows="5" required minlength="10"></textarea></label>
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <label class="check">
+              <input type="checkbox" name="consent" required />
+              <span>I consent to CALOTTÉ storing this inquiry for the purpose of responding.</span>
+            </label>
+            <button type="submit" class="btn btn-gold full">Send Your Inquiry</button>
+            <p class="form-msg" data-msg></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== SHOP VIEW ========== -->
+  <div class="view" data-view="shop" hidden>
+    <div class="container page-head">
+      <p class="eyebrow">SHOP BY CATEGORY</p>
+      <h1 class="display">THE ANTHOLOGY</h1>
+      <p class="lede">Explore the CALOTTÉ debut collection. All pieces are currently marked coming soon while production is finalised.</p>
+    </div>
+    <div class="container">
+      <div class="shop-toolbar">
+        <div class="filters" id="shop-filters">
+          <button class="filter active" data-cat="all">ALL CAPSULES</button>
+          <button class="filter" data-cat="t-shirts">CAPTURE</button>
+          <button class="filter" data-cat="hoodies">EMBRACE</button>
+          <button class="filter" data-cat="oversized">CONTOUR</button>
+          <button class="filter" data-cat="jeans">STRUCTURE</button>
+        </div>
+        <label class="sort-label">
+          Sort
+          <select id="shop-sort">
+            <option value="featured">Featured</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </label>
+      </div>
+      <p class="muted small" id="shop-count"></p>
+      <div class="product-grid" id="shop-grid"></div>
+    </div>
+  </div>
+
+  <!-- ========== WISHLIST VIEW ========== -->
+  <div class="view" data-view="wishlist" hidden>
+    <div class="container page-head">
+      <p class="eyebrow">YOUR SELECTION</p>
+      <h1 class="display">WISHLIST</h1>
+    </div>
+    <div class="container">
+      <div id="wishlist-empty" class="empty-state">
+        <p>Your wishlist is empty.</p>
+        <p class="muted small">Save pieces from the collection to keep them in view. Wishlist items persist on this device.</p>
+        <a href="#/shop" class="btn btn-outline mt-4">Explore the Anthology</a>
+      </div>
+      <div class="product-grid" id="wishlist-grid"></div>
+    </div>
+  </div>
+
+  <!-- ========== ABOUT VIEW ========== -->
+  <div class="view" data-view="about" hidden>
+    <div class="container page-head">
+      <p class="eyebrow">OUR HERITAGE</p>
+      <h1 class="display">CALOTTÉ</h1>
+    </div>
+    <div class="container about-grid">
+      <div class="about-copy">
+        <p class="lead">CALOTTÉ exists at the intersection of contemporary streetwear and considered design.</p>
+        <p>Built around expressive silhouettes, restrained detailing, and a distinctive black-and-gold visual language, the label approaches everyday clothing with an editorial point of view.</p>
+        <p>Our focus is on the relationship between fit, texture, proportion, and detail. Every collection is an opportunity to explore a more considered approach to modern dressing.</p>
+        <p class="quote">CALOTTÉ is designed for those who value individuality without excess.</p>
+        <a href="#/shop" class="btn btn-outline mt-4">Explore the Collection</a>
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1200&q=80" alt="CALOTTÉ studio" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CONTACT VIEW ========== -->
+  <div class="view" data-view="contact" hidden>
+    <div class="container page-head">
+      <p class="eyebrow">GET IN TOUCH</p>
+      <h1 class="display">THE CALOTTÉ STUDIO</h1>
+      <p class="lede">For questions about our collections, product details, sizing, or upcoming releases, our team is here to help.</p>
+    </div>
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <div><span class="gold-label">STUDIO</span><p>New Delhi, India — by appointment only (placeholder)</p></div>
+        <div><span class="gold-label">CONCIERGE</span><a href="mailto:concierge@calotte.com">concierge@calotte.com</a></div>
+        <div><span class="gold-label">INSTAGRAM</span><a href="https://instagram.com/calotte.official" target="_blank" rel="noreferrer">@calotte.official</a></div>
+        <div><span class="gold-label">RESPONSE WINDOW</span><p>To be confirmed at launch</p></div>
+      </div>
+      <div class="contact-form-wrap">
+        <h3 class="eyebrow">Send Your Inquiry</h3>
+        <form class="contact-form" data-form="contact" novalidate>
+          <label>Full Name<input type="text" name="name" required minlength="2" autocomplete="name" /></label>
+          <label>Email Address<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Inquiry Type
+            <select name="subject" required>
+              <option value="">Select an inquiry</option>
+              <option value="collection">Collection Question</option>
+              <option value="sizing">Sizing and Fit</option>
+              <option value="launch">Launch Information</option>
+              <option value="press">Press or Collaboration</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" rows="5" required minlength="10"></textarea></label>
+          <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <label class="check">
+            <input type="checkbox" name="consent" required />
+            <span>I consent to CALOTTÉ storing this inquiry for the purpose of responding.</span>
+          </label>
+          <button type="submit" class="btn btn-gold full">Send Your Inquiry</button>
+          <p class="form-msg" data-msg></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CAMPAIGN VIEW ========== -->
+  <div class="view" data-view="campaign" hidden>
+    <section class="campaign-hero">
+      <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" alt="CALOTTÉ campaign" />
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">THE CAMPAIGN</p>
+        <h1 class="hero-title">THE DEBUT</h1>
+        <p class="hero-sub">An editorial introduction to the CALOTTÉ debut collection.</p>
+        <a href="#/shop" class="btn btn-gold">Explore the Collection</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== PRODUCT DETAIL VIEW ========== -->
+  <div class="view" data-view="product" hidden>
+    <div class="container" id="product-detail"></div>
+  </div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#/" class="logo">CALOTTÉ</a>
+        <p class="muted small mt-3">Contemporary luxury streetwear defined by considered silhouettes, distinctive details, and a refined black-and-gold aesthetic.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/calotte.official" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+          </a>
+          <a href="mailto:concierge@calotte.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-title">The Directory</h3>
+        <ul>
+          <li><a href="#/shop">Shop Catalog</a></li>
+          <li><a href="#/shop">Limited Collections</a></li>
+          <li><a href="#/about">Our Heritage</a></li>
+          <li><a href="#/campaign">Campaign</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title">Customer Service</h3>
+        <ul>
+          <li><a href="#/contact">Contact</a></li>
+          <li><a href="#/contact">Shipping and Delivery</a></li>
+          <li><a href="#/contact">Returns and Exchanges</a></li>
+          <li><a href="#/shop">Size Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title">Legal</h3>
+        <ul>
+          <li><a href="#/contact">Privacy Policy</a></li>
+          <li><a href="#/contact">Terms and Conditions</a></li>
+          <li><a href="#/wishlist">Wishlist</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-letter">
+      <h3 class="footer-title">The CALOTTÉ Letter</h3>
+      <p class="muted small">Private access to collection releases, studio notes, and launch notifications.</p>
+      <form class="newsletter-form" data-form="newsletter" novalidate>
+        <input type="email" name="email" placeholder="Email address" required autocomplete="email" />
+        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+        <label class="check full-row">
+          <input type="checkbox" name="consent" required />
+          <span>I consent to receiving CALOTTÉ launch and collection emails.</span>
+        </label>
+        <p class="form-msg" data-msg></p>
+      </form>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> CALOTTÉ. All rights reserved.</p>
+      <p>Designed and developed in India.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SEARCH DIALOG ============ -->
+<div class="modal" id="search-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel search-panel" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="search-icon"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="text" id="search-input" placeholder="Search CALOTTÉ pieces…" aria-label="Search products" />
+      <button class="icon-btn" data-close aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="drawer" id="cart-drawer" aria-hidden="true">
+  <div class="drawer-backdrop" data-close></div>
+  <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Shopping bag">
+    <div class="drawer-head">
+      <h2 class="eyebrow">Your Bag (<span id="cart-count-label">0</span>)</h2>
+      <button class="icon-btn" data-close aria-label="Close bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="cart-body"></div>
+    <div class="drawer-foot" id="cart-foot"></div>
+  </aside>
+</div>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal" id="quickview-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel quickview-panel" role="dialog" aria-modal="true" aria-label="Product quick view" id="quickview-content"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
