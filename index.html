@@ -13,16 +13,15 @@
 
         :root {
             --bg-base: #050505;
-            --bg-elevated: #090909;
             --text-primary: #ffffff;
-            --text-secondary: #888888;
+            --text-secondary: #a0a0a0;
             --accent-gold: #d4af37;
             
-            /* Glassmorphism */
-            --glass-bg: rgba(255, 255, 255, 0.035);
-            --glass-border: rgba(255, 255, 255, 0.09);
+            /* Premium Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --glass-blur: blur(24px);
-            --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+            --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -37,9 +36,31 @@
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.03) 0%, transparent 60%),
-                              radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
-            background-attachment: fixed;
+        }
+
+        /* Cinematic Background Layer */
+        .bg-layer {
+            position: fixed;
+            top: -5%; left: -5%; width: 110%; height: 110%;
+            background-image: url('bng.png'); /* Desktop Background */
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            opacity: 0.4;
+            animation: slowPan 30s infinite alternate ease-in-out;
+        }
+
+        /* Dark gradient overlay to ensure text readability */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 0.95) 80%);
+            z-index: -1;
+        }
+
+        @keyframes slowPan {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.05) translate(-1%, -1%); }
         }
 
         .logo-font { font-family: 'Cinzel', serif; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -48,16 +69,39 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%; padding: 20px 40px;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 100; background: rgba(5, 5, 5, 0.6); backdrop-filter: var(--glass-blur);
+            z-index: 100; background: rgba(5, 5, 5, 0.4); backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--glass-border);
+            transition: background 0.3s;
         }
 
         .nav-logo { font-size: 1.5rem; color: var(--text-primary); font-weight: 700; letter-spacing: 2px; }
-        .nav-logo span { color: var(--accent-gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+        .nav-logo span { color: var(--accent-gold); text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
         
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { 
+            color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; 
+            transition: color 0.3s, text-shadow 0.3s; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px; 
+            background: var(--accent-gold); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
 
         /* Hero Section */
         .hero {
@@ -66,73 +110,95 @@
         }
 
         .hero-title { font-size: 5rem; font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: 0.05em; }
-        .hero-title span { color: var(--accent-gold); }
+        .hero-title span { 
+            color: var(--accent-gold); 
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            animation: pulseGlow 3s infinite alternate;
+        }
         
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+            100% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        }
+
         .hero-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.6; margin-bottom: 40px; font-weight: 300; }
 
         .btn-primary {
             background: var(--text-primary); color: var(--bg-base);
             padding: 16px 40px; border-radius: 8px; font-weight: 600; font-size: 1rem;
-            text-decoration: none; border: none; cursor: pointer; transition: all 0.2s ease;
+            text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            position: relative; overflow: hidden;
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15); }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); }
+        .btn-primary:hover::before { left: 100%; }
 
         /* Catalog Section */
-        .catalog { padding: 100px 10%; display: flex; flex-direction: column; align-items: center; }
-        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; color: var(--text-primary); }
-        .section-title::after { content: ''; display: block; width: 60px; height: 1px; background: var(--accent-gold); margin: 15px auto 0; opacity: 0.5; }
+        .catalog { padding: 100px 10% 150px; display: flex; flex-direction: column; align-items: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; color: var(--text-primary); }
+        .section-title::after { content: ''; display: block; width: 80px; height: 1px; background: var(--accent-gold); margin: 15px auto 0; opacity: 0.6; }
 
         /* Glass Card */
         .chapter-card {
-            width: 100%; max-width: 800px; 
+            width: 100%; max-width: 850px; 
             background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px;
+            border: 1px solid var(--glass-border); border-radius: 20px; padding: 45px;
             box-shadow: var(--glass-shadow);
             display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-            transition: all 0.3s ease; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
         }
 
+        /* Glass Reflection Animation */
         .chapter-card::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-            transform: skewX(-25deg); transition: left 0.7s ease;
+            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+            transform: skewX(-25deg); transition: left 0.8s ease;
         }
         .chapter-card:hover::before { left: 150%; }
         
         .chapter-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
             background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px) scale(1.01);
         }
 
         .chapter-info { display: flex; flex-direction: column; gap: 8px; }
-        .chapter-num { font-size: 0.8rem; color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
-        .chapter-name { font-size: 1.8rem; font-weight: 500; color: var(--text-primary); }
+        .chapter-num { font-size: 0.85rem; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+        .chapter-name { font-size: 2rem; font-weight: 500; color: var(--text-primary); letter-spacing: 1px; }
 
         .btn-read {
             background: transparent; border: 1px solid var(--glass-border); color: var(--text-primary);
-            padding: 12px 30px; border-radius: 30px; font-weight: 500; transition: all 0.2s; cursor: pointer;
+            padding: 14px 35px; border-radius: 30px; font-weight: 500; font-size: 1rem; transition: all 0.3s; cursor: pointer;
         }
-        .chapter-card:hover .btn-read { background: var(--text-primary); color: var(--bg-base); }
+        .chapter-card:hover .btn-read { background: var(--text-primary); color: var(--bg-base); border-color: var(--text-primary); }
 
         /* --------------------------------
            PREMIUM VIEWER
         ----------------------------------- */
         #viewer {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; opacity: 0; visibility: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #020202; z-index: 2000; flex-direction: column;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+        
+        #viewer.open { opacity: 1; visibility: visible; }
 
         .viewer-toolbar {
             position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
             width: 95%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center;
             padding: 12px 24px; background: rgba(15, 15, 15, 0.7); backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border); border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 10; transition: opacity 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 10;
         }
 
-        .viewer-title { font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; }
+        .viewer-title { font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; color: var(--text-secondary); }
         .toolbar-controls { display: flex; align-items: center; gap: 15px; }
         
         .btn-icon {
@@ -140,7 +206,7 @@
             color: var(--text-primary); width: 36px; height: 36px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.2s;
         }
-        .btn-icon:hover { background: rgba(255, 255, 255, 0.15); }
+        .btn-icon:hover { background: rgba(255, 255, 255, 0.15); transform: scale(1.05); }
         
         .btn-close { color: #ff6b6b; }
         .btn-close:hover { background: rgba(255, 50, 50, 0.2); border-color: rgba(255, 50, 50, 0.3); }
@@ -172,14 +238,14 @@
             width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
             font-size: 1.5rem; cursor: pointer; z-index: 10; transition: 0.2s;
         }
-        .side-arrow:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
+        .side-arrow:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); transform: translateY(-50%) scale(1.1); }
         #arrow-prev { left: 30px; }
         #arrow-next { right: 30px; }
 
         /* Mobile Bottom Bar */
         .mobile-nav {
             display: none; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; padding: 12px 20px; background: rgba(15, 15, 15, 0.8);
+            width: 90%; padding: 12px 20px; background: rgba(15, 15, 15, 0.85);
             backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border);
             border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             justify-content: space-between; align-items: center; z-index: 10;
@@ -192,51 +258,63 @@
             position: absolute; top: 80px; right: 5%; width: 300px;
             background: rgba(10, 10, 10, 0.95); backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8); z-index: 30;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9); z-index: 30;
             display: none; flex-direction: column; gap: 20px;
             max-height: 80vh; overflow-y: auto;
         }
-        .settings-menu.active { display: flex; }
+        .settings-menu.active { display: flex; animation: fadeInDown 0.3s ease; }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
         .setting-group { display: flex; flex-direction: column; gap: 10px; }
-        .setting-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .setting-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
         
         .options-row { display: flex; gap: 8px; flex-wrap: wrap; }
         .opt-btn {
-            flex: 1; min-width: calc(33% - 8px); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            flex: 1; min-width: calc(33% - 8px); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-primary); padding: 10px 5px; border-radius: 8px; cursor: pointer;
-            font-size: 0.85rem; transition: 0.2s; text-align: center;
+            font-size: 0.85rem; transition: all 0.2s; text-align: center;
         }
-        .opt-btn.active, .opt-btn:hover { background: var(--text-primary); color: var(--bg-base); font-weight: 600; }
+        .opt-btn.active, .opt-btn:hover { background: var(--text-primary); color: var(--bg-base); font-weight: 600; border-color: var(--text-primary); }
 
         /* Spinner */
         .spinner {
             position: absolute; width: 40px; height: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.1); border-top-color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.1); border-top-color: var(--accent-gold);
             border-radius: 50%; animation: spin 1s linear infinite; z-index: 5;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
-            .chapter-card { flex-direction: column; text-align: center; gap: 20px; padding: 30px; }
-            .nav-links { display: none; }
+            .bg-layer { background-image: url('bngmob.png'); } /* Mobile Background */
+            
+            nav { padding: 15px 20px; }
+            .hero-title { font-size: 3.5rem; }
+            .chapter-card { flex-direction: column; text-align: center; gap: 25px; padding: 35px 20px; }
+            .chapter-name { font-size: 1.6rem; }
             
             .viewer-toolbar { width: 90%; top: 15px; padding: 10px 15px; }
             .viewer-title { display: none; }
-            .page-indicator { display: none; } /* Hide top page indicator, it's in the bottom bar now */
+            .page-indicator { display: none; } 
             
-            .viewer-stage { padding: 70px 10px 100px; } /* Make room for bottom bar */
+            .viewer-stage { padding: 70px 10px 100px; } 
             
-            .side-arrow { display: none; } /* Hide side arrows, use bottom bar */
-            .mobile-nav { display: flex; } /* Show bottom bar */
+            .side-arrow { display: none; } 
+            .mobile-nav { display: flex; } 
             
             .settings-menu { right: 50%; transform: translateX(50%); width: 90%; top: 60px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Cinematic Background -->
+    <div class="bg-layer"></div>
+    <div class="bg-overlay"></div>
 
     <!-- Navigation -->
     <nav>
@@ -249,16 +327,16 @@
 
     <!-- Hero -->
     <section class="hero">
-        <h1 class="hero-title logo-font">S<span>O</span>ULSTAKER</h1>
-        <p class="hero-desc">In a world shattered by cosmic forces, one soul must traverse the ruins to uncover the truth. A dark fantasy epic by Aarav Jha.</p>
-        <a href="#catalog" class="btn-primary">Explore Chapters</a>
+        <h1 class="hero-title logo-font fade-up">S<span>O</span>ULSTAKER</h1>
+        <p class="hero-desc fade-up delay-1">In a world shattered by cosmic forces, one soul must traverse the ruins to uncover the truth. A dark fantasy epic by Aarav Jha.</p>
+        <a href="#catalog" class="btn-primary fade-up delay-2">Explore Chapters</a>
     </section>
 
     <!-- Catalog -->
     <section class="catalog" id="catalog">
-        <h2 class="section-title logo-font">Chapters</h2>
+        <h2 class="section-title logo-font fade-up">Chapters</h2>
         
-        <div class="chapter-card" onclick="openViewer()">
+        <div class="chapter-card fade-up delay-1" onclick="openViewer()">
             <div class="chapter-info">
                 <div class="chapter-num">Chapter 01</div>
                 <div class="chapter-name">The First Glimpse</div>
@@ -305,7 +383,7 @@
                     <button class="opt-btn preload-btn" data-preload="2" onclick="setPreload(2)">2</button>
                     <button class="opt-btn preload-btn" data-preload="4" onclick="setPreload(4)">4</button>
                     <button class="opt-btn preload-btn" data-preload="6" onclick="setPreload(6)">6</button>
-                    <button class="opt-btn preload-btn" data-preload="unlimited" onclick="setPreload('unlimited')">∞</button>
+                    <button class="opt-btn preload-btn active" data-preload="unlimited" onclick="setPreload('unlimited')">∞</button>
                 </div>
             </div>
         </div>
@@ -335,6 +413,21 @@
 
     <!-- JavaScript Logic -->
     <script>
+        // --- 1. SCROLL ANIMATIONS ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        });
+
+        // --- 2. VIEWER LOGIC ---
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         // State
@@ -344,7 +437,7 @@
         let currentScale = 1.5;
         let direction = 'ltr'; 
         let isRendering = false;
-        let preloadCount = 5; // Default Preload setting
+        let preloadCount = 'unlimited'; // Default matching the HTML active state
         
         // Preload Cache
         const preloadedCache = new Map();
@@ -378,7 +471,7 @@
 
         // Open Viewer
         async function openViewer() {
-            viewer.style.display = 'flex';
+            viewer.classList.add('open');
             document.body.style.overflow = 'hidden';
             settingsMenu.classList.remove('active');
             
@@ -387,17 +480,11 @@
                 try {
                     pdfDoc = await pdfjsLib.getDocument(PDF_PATH).promise;
                     totalPages = pdfDoc.numPages;
-                    
-                    // Set default active UI for preload (5 is not explicitly there, so we just default to 5 logic)
-                    // But since options are 0, 2, 4, 6, ∞, we'll highlight none of them or add a 5 option?
-                    // The prompt asked for default 5. The closest visible option is 4 or 6. 
-                    // I'll leave the visual unhighlighted, but logic will run 5.
-                    
                     updateUI();
                     renderPage(currentPage);
                 } catch (err) {
                     console.error("PDF Load Error:", err);
-                    alert("Could not load PDF. Ensure it exists and you are on a server.");
+                    alert("Could not load PDF. Ensure 'chapter1.pdf' exists.");
                     closeViewer();
                 }
             } else {
@@ -407,11 +494,11 @@
 
         // Close Viewer
         function closeViewer() {
-            viewer.style.display = 'none';
+            viewer.classList.remove('open');
             document.body.style.overflow = 'auto';
             settingsMenu.classList.remove('active');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            preloadedCache.clear(); // Free memory on close
+            preloadedCache.clear(); 
         }
 
         // Change Direction
@@ -421,7 +508,6 @@
                 btn.classList.toggle('active', btn.dataset.dir === dir);
             });
             updateUI();
-            // No need to re-render canvas for RTL/LTR, just update UI arrows
         }
 
         // Change Quality
@@ -492,18 +578,16 @@
 
             // Cleanup distant cache to prevent memory leaks
             for (let [key, val] of preloadedCache.entries()) {
-                if (key !== 'loading' && Math.abs(key - num) > 8) {
+                if (key !== 'loading' && Math.abs(key - num) > 10) {
                     preloadedCache.delete(key);
                 }
             }
 
             try {
-                // Check if page is preloaded
                 if (preloadedCache.has(num) && preloadedCache.get(num) !== 'loading') {
                     const cachedCanvas = preloadedCache.get(num);
                     canvas.width = cachedCanvas.width;
                     canvas.height = cachedCanvas.height;
-                    // Update CSS max-width/height to maintain aspect ratio
                     canvas.style.width = cachedCanvas.style.width;
                     canvas.style.height = cachedCanvas.style.height;
                     
@@ -512,11 +596,9 @@
                     spinner.style.display = 'none';
                     isRendering = false;
                 } else {
-                    // Render via PDF.js
                     const page = await pdfDoc.getPage(num);
                     const viewport = page.getViewport({ scale: currentScale });
                     
-                    // High DPI handling
                     const outputScale = window.devicePixelRatio || 1;
                     canvas.width = Math.floor(viewport.width * outputScale);
                     canvas.height = Math.floor(viewport.height * outputScale);
@@ -546,25 +628,20 @@
         }
 
         // --- PRELOADING LOGIC ---
-        
-        // Queue to handle preloading without blocking the main thread
         let preloadTimeout = null;
 
         function startPreload() {
             if (preloadCount === 0) return;
-            
             clearTimeout(preloadTimeout);
             
-            // Determine how many pages to preload based on setting
             let pagesToLoad = preloadCount === 'unlimited' ? (totalPages - currentPage) : parseInt(preloadCount);
-            
             let pageToLoad = currentPage + 1;
             let loadedCount = 0;
 
             const loadNextInQueue = () => {
                 if (loadedCount >= pagesToLoad || pageToLoad > totalPages) return;
+                
                 if (preloadedCache.has(pageToLoad)) {
-                    // Already preloaded, skip to next
                     pageToLoad++;
                     loadedCount++;
                     loadNextInQueue();
@@ -572,19 +649,16 @@
                     preloadPage(pageToLoad).then(() => {
                         pageToLoad++;
                         loadedCount++;
-                        // Wait 150ms before loading next to keep UI smooth
-                        preloadTimeout = setTimeout(loadNextInQueue, 150);
+                        preloadTimeout = setTimeout(loadNextInQueue, 150); // Prevent UI block
                     });
                 }
             };
-
             loadNextInQueue();
         }
 
         async function preloadPage(num) {
             if (!pdfDoc || preloadedCache.has(num)) return;
-            
-            preloadedCache.set(num, 'loading'); // Mark as loading
+            preloadedCache.set(num, 'loading'); 
             
             try {
                 const page = await pdfDoc.getPage(num);
@@ -609,13 +683,13 @@
                 preloadedCache.set(num, offCanvas);
             } catch (e) {
                 console.log("Preload error:", e);
-                preloadedCache.delete(num); // Remove failed state
+                preloadedCache.delete(num); 
             }
         }
 
         // Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
-            if (viewer.style.display === 'flex') {
+            if (viewer.classList.contains('open')) {
                 if (e.key === 'Escape') closeViewer();
                 if (e.key === 'ArrowRight') handleZoneClick('next');
                 if (e.key === 'ArrowLeft') handleZoneClick('prev');
