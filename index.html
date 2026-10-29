@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SOULSTAKER | Premium Catalog</title>
     
     <!-- PDF.js -->
@@ -14,12 +14,11 @@
         :root {
             --bg-base: #050505;
             --bg-elevated: #090909;
-            --bg-charcoal: #111111;
             --text-primary: #ffffff;
             --text-secondary: #888888;
-            --accent-gold: #d4af37; /* Refined luxury gold */
+            --accent-gold: #d4af37;
             
-            /* Glassmorphism Master Variables */
+            /* Glassmorphism */
             --glass-bg: rgba(255, 255, 255, 0.035);
             --glass-border: rgba(255, 255, 255, 0.09);
             --glass-blur: blur(24px);
@@ -30,6 +29,7 @@
             margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -37,13 +37,11 @@
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
-            /* Cinematic ambient lighting */
             background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.03) 0%, transparent 60%),
                               radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
             background-attachment: fixed;
         }
 
-        /* Typography */
         .logo-font { font-family: 'Cinzel', serif; letter-spacing: 0.1em; text-transform: uppercase; }
 
         /* Navigation */
@@ -95,7 +93,6 @@
             transition: all 0.3s ease; position: relative; overflow: hidden;
         }
 
-        /* Glass Reflection Effect */
         .chapter-card::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
@@ -145,12 +142,6 @@
         }
         .btn-icon:hover { background: rgba(255, 255, 255, 0.15); }
         
-        .btn-text {
-            background: transparent; border: none; color: var(--text-secondary); cursor: pointer;
-            font-size: 0.9rem; transition: 0.2s; padding: 5px 10px;
-        }
-        .btn-text:hover { color: var(--text-primary); }
-        
         .btn-close { color: #ff6b6b; }
         .btn-close:hover { background: rgba(255, 50, 50, 0.2); border-color: rgba(255, 50, 50, 0.3); }
 
@@ -168,12 +159,12 @@
             transition: opacity 0.2s ease; opacity: 0;
         }
 
-        /* Click Zones for Mangadex-style turning */
+        /* Click Zones */
         .click-zone { position: absolute; top: 0; bottom: 0; width: 25%; cursor: pointer; z-index: 5; }
         .zone-left { left: 0; }
         .zone-right { right: 0; }
 
-        /* Side Arrows */
+        /* Side Arrows (Desktop) */
         .side-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(15, 15, 15, 0.5); backdrop-filter: blur(10px);
@@ -185,24 +176,36 @@
         #arrow-prev { left: 30px; }
         #arrow-next { right: 30px; }
 
+        /* Mobile Bottom Bar */
+        .mobile-nav {
+            display: none; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; padding: 12px 20px; background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border);
+            border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            justify-content: space-between; align-items: center; z-index: 10;
+        }
+
+        .mobile-nav .btn-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+
         /* Settings Panel */
         .settings-menu {
-            position: absolute; top: 80px; right: 5%; width: 280px;
-            background: rgba(10, 10, 10, 0.9); backdrop-filter: var(--glass-blur);
+            position: absolute; top: 80px; right: 5%; width: 300px;
+            background: rgba(10, 10, 10, 0.95); backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8); z-index: 20;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8); z-index: 30;
             display: none; flex-direction: column; gap: 20px;
+            max-height: 80vh; overflow-y: auto;
         }
         .settings-menu.active { display: flex; }
         
         .setting-group { display: flex; flex-direction: column; gap: 10px; }
         .setting-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
         
-        .options-row { display: flex; gap: 8px; }
+        .options-row { display: flex; gap: 8px; flex-wrap: wrap; }
         .opt-btn {
-            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-primary); padding: 10px; border-radius: 8px; cursor: pointer;
-            font-size: 0.85rem; transition: 0.2s;
+            flex: 1; min-width: calc(33% - 8px); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-primary); padding: 10px 5px; border-radius: 8px; cursor: pointer;
+            font-size: 0.85rem; transition: 0.2s; text-align: center;
         }
         .opt-btn.active, .opt-btn:hover { background: var(--text-primary); color: var(--bg-base); font-weight: 600; }
 
@@ -214,14 +217,22 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
             .chapter-card { flex-direction: column; text-align: center; gap: 20px; padding: 30px; }
             .nav-links { display: none; }
-            .viewer-toolbar { width: 100%; top: 0; border-radius: 0; border-left: none; border-right: none; border-top: none; }
+            
+            .viewer-toolbar { width: 90%; top: 15px; padding: 10px 15px; }
             .viewer-title { display: none; }
-            .side-arrow { display: none; } /* Rely on click zones on mobile */
-            .settings-menu { right: 50%; transform: translateX(50%); width: 90%; }
+            .page-indicator { display: none; } /* Hide top page indicator, it's in the bottom bar now */
+            
+            .viewer-stage { padding: 70px 10px 100px; } /* Make room for bottom bar */
+            
+            .side-arrow { display: none; } /* Hide side arrows, use bottom bar */
+            .mobile-nav { display: flex; } /* Show bottom bar */
+            
+            .settings-menu { right: 50%; transform: translateX(50%); width: 90%; top: 60px; }
         }
     </style>
 </head>
@@ -287,21 +298,38 @@
                     <button class="opt-btn zoom-btn" data-scale="2.0" onclick="setQuality(2.0)">Ultra</button>
                 </div>
             </div>
+            <div class="setting-group">
+                <div class="setting-label">Preload Pages</div>
+                <div class="options-row">
+                    <button class="opt-btn preload-btn" data-preload="0" onclick="setPreload(0)">0</button>
+                    <button class="opt-btn preload-btn" data-preload="2" onclick="setPreload(2)">2</button>
+                    <button class="opt-btn preload-btn" data-preload="4" onclick="setPreload(4)">4</button>
+                    <button class="opt-btn preload-btn" data-preload="6" onclick="setPreload(6)">6</button>
+                    <button class="opt-btn preload-btn" data-preload="unlimited" onclick="setPreload('unlimited')">∞</button>
+                </div>
+            </div>
         </div>
 
         <!-- Main Stage -->
         <div class="viewer-stage">
             <div class="spinner" id="spinner"></div>
             
-            <!-- Click Zones for page turning -->
+            <!-- Click Zones -->
             <div class="click-zone zone-left" id="zone-prev" onclick="handleZoneClick('prev')"></div>
             <div class="click-zone zone-right" id="zone-next" onclick="handleZoneClick('next')"></div>
 
-            <!-- Navigation Arrows -->
+            <!-- Desktop Arrows -->
             <button class="side-arrow" id="arrow-prev" onclick="handleZoneClick('prev')">❮</button>
             <button class="side-arrow" id="arrow-next" onclick="handleZoneClick('next')">❯</button>
 
             <canvas id="canvas-element"></canvas>
+        </div>
+
+        <!-- Mobile Bottom Navigation -->
+        <div class="mobile-nav">
+            <button class="btn-icon" onclick="handleZoneClick('prev')">❮</button>
+            <span class="page-indicator" id="mobile-page-ui" style="display:block; color: #fff;">1 / 1</span>
+            <button class="btn-icon" onclick="handleZoneClick('next')">❯</button>
         </div>
     </div>
 
@@ -314,8 +342,12 @@
         let currentPage = 1;
         let totalPages = 0;
         let currentScale = 1.5;
-        let direction = 'ltr'; // 'ltr' or 'rtl'
+        let direction = 'ltr'; 
         let isRendering = false;
+        let preloadCount = 5; // Default Preload setting
+        
+        // Preload Cache
+        const preloadedCache = new Map();
 
         // DOM Elements
         const viewer = document.getElementById('viewer');
@@ -323,11 +355,12 @@
         const ctx = canvas.getContext('2d');
         const spinner = document.getElementById('spinner');
         const pageUI = document.getElementById('page-ui');
+        const mobilePageUI = document.getElementById('mobile-page-ui');
         const settingsMenu = document.getElementById('settings-menu');
         const arrowPrev = document.getElementById('arrow-prev');
         const arrowNext = document.getElementById('arrow-next');
 
-        // Setup PDF File Path (Adjust if needed)
+        // Setup PDF Path
         const PDF_PATH = './chapter1.pdf'; 
 
         // Toggle Settings
@@ -336,7 +369,7 @@
             settingsMenu.classList.toggle('active');
         });
 
-        // Close settings if clicking outside
+        // Close settings outside
         document.addEventListener('click', (e) => {
             if (!settingsMenu.contains(e.target) && e.target.id !== 'btn-settings') {
                 settingsMenu.classList.remove('active');
@@ -352,18 +385,22 @@
             if (!pdfDoc) {
                 spinner.style.display = 'block';
                 try {
-                    // Load PDF
                     pdfDoc = await pdfjsLib.getDocument(PDF_PATH).promise;
                     totalPages = pdfDoc.numPages;
+                    
+                    // Set default active UI for preload (5 is not explicitly there, so we just default to 5 logic)
+                    // But since options are 0, 2, 4, 6, ∞, we'll highlight none of them or add a 5 option?
+                    // The prompt asked for default 5. The closest visible option is 4 or 6. 
+                    // I'll leave the visual unhighlighted, but logic will run 5.
+                    
                     updateUI();
                     renderPage(currentPage);
                 } catch (err) {
                     console.error("PDF Load Error:", err);
-                    alert("Could not load the PDF. Make sure 'chapter1.pdf' is in the same folder and hosted correctly.");
+                    alert("Could not load PDF. Ensure it exists and you are on a server.");
                     closeViewer();
                 }
             } else {
-                // Re-render if already loaded
                 renderPage(currentPage);
             }
         }
@@ -373,7 +410,8 @@
             viewer.style.display = 'none';
             document.body.style.overflow = 'auto';
             settingsMenu.classList.remove('active');
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Free memory
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            preloadedCache.clear(); // Free memory on close
         }
 
         // Change Direction
@@ -383,7 +421,7 @@
                 btn.classList.toggle('active', btn.dataset.dir === dir);
             });
             updateUI();
-            renderPage(currentPage); // Re-render to ensure correct scaling/layout
+            // No need to re-render canvas for RTL/LTR, just update UI arrows
         }
 
         // Change Quality
@@ -392,24 +430,28 @@
             document.querySelectorAll('.zoom-btn').forEach(btn => {
                 btn.classList.toggle('active', parseFloat(btn.dataset.scale) === scale);
             });
+            preloadedCache.clear(); // Clear old quality cache
             renderPage(currentPage);
         }
 
-        // Unified Page Change Logic (Fixes LTR/RTL Glitch)
+        // Change Preload Setting
+        function setPreload(val) {
+            preloadCount = val;
+            document.querySelectorAll('.preload-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.preload == val);
+            });
+            startPreload(); // Trigger immediately
+        }
+
+        // Unified Page Change Logic
         function changePage(intent) {
             if (isRendering || !pdfDoc) return;
 
-            // If intent is 'next', we add 1 for LTR, subtract 1 for RTL
             let step = (intent === 'next') ? 1 : -1;
-            
-            // Reverse step if reading RTL (Manga style)
-            if (direction === 'rtl') {
-                step *= -1;
-            }
+            if (direction === 'rtl') step *= -1;
 
             let newPage = currentPage + step;
 
-            // Boundary Check
             if (newPage >= 1 && newPage <= totalPages) {
                 currentPage = newPage;
                 updateUI();
@@ -417,74 +459,157 @@
             }
         }
 
-        // Handle Click Zones (Arrows & Screen Clicks)
         function handleZoneClick(clickedZone) {
-            // Visually Left = prev, Right = next. 
-            // But in RTL, Left physically means "Next Page". 
-            // So we pass the *logical* intent to changePage.
-            
-            if (clickedZone === 'next') {
-                changePage('next');
-            } else {
-                changePage('prev');
-            }
+            if (clickedZone === 'next') changePage('next');
+            else changePage('prev');
         }
 
-        // Update UI Elements (Arrows, Page Numbers)
+        // Update UI Elements
         function updateUI() {
-            pageUI.textContent = `${currentPage} / ${totalPages}`;
+            const text = `${currentPage} / ${totalPages}`;
+            pageUI.textContent = text;
+            mobilePageUI.textContent = text;
 
-            // Update Arrow Icons based on Direction
             if (direction === 'ltr') {
                 arrowPrev.innerHTML = '❮';
                 arrowNext.innerHTML = '❯';
                 arrowPrev.style.opacity = currentPage <= 1 ? '0.3' : '1';
                 arrowNext.style.opacity = currentPage >= totalPages ? '0.3' : '1';
             } else {
-                arrowPrev.innerHTML = '❯'; // Visually flipped for Manga
+                arrowPrev.innerHTML = '❯'; 
                 arrowNext.innerHTML = '❮';
                 arrowPrev.style.opacity = currentPage >= totalPages ? '0.3' : '1';
                 arrowNext.style.opacity = currentPage <= 1 ? '0.3' : '1';
             }
         }
 
-        // Render PDF Page to Canvas
+        // Render PDF Page
         async function renderPage(num) {
             if (!pdfDoc) return;
             isRendering = true;
             spinner.style.display = 'block';
             canvas.style.opacity = '0.5';
 
+            // Cleanup distant cache to prevent memory leaks
+            for (let [key, val] of preloadedCache.entries()) {
+                if (key !== 'loading' && Math.abs(key - num) > 8) {
+                    preloadedCache.delete(key);
+                }
+            }
+
+            try {
+                // Check if page is preloaded
+                if (preloadedCache.has(num) && preloadedCache.get(num) !== 'loading') {
+                    const cachedCanvas = preloadedCache.get(num);
+                    canvas.width = cachedCanvas.width;
+                    canvas.height = cachedCanvas.height;
+                    // Update CSS max-width/height to maintain aspect ratio
+                    canvas.style.width = cachedCanvas.style.width;
+                    canvas.style.height = cachedCanvas.style.height;
+                    
+                    ctx.drawImage(cachedCanvas, 0, 0);
+                    canvas.style.opacity = '1';
+                    spinner.style.display = 'none';
+                    isRendering = false;
+                } else {
+                    // Render via PDF.js
+                    const page = await pdfDoc.getPage(num);
+                    const viewport = page.getViewport({ scale: currentScale });
+                    
+                    // High DPI handling
+                    const outputScale = window.devicePixelRatio || 1;
+                    canvas.width = Math.floor(viewport.width * outputScale);
+                    canvas.height = Math.floor(viewport.height * outputScale);
+                    canvas.style.width = Math.floor(viewport.width) + "px";
+                    canvas.style.height = Math.floor(viewport.height) + "px";
+
+                    const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+
+                    await page.render({
+                        canvasContext: ctx,
+                        transform: transform,
+                        viewport: viewport
+                    }).promise;
+                    
+                    canvas.style.opacity = '1';
+                    spinner.style.display = 'none';
+                    isRendering = false;
+                }
+
+                // Start preloading next pages
+                startPreload();
+
+            } catch (err) {
+                console.error("Render Error:", err);
+                isRendering = false;
+            }
+        }
+
+        // --- PRELOADING LOGIC ---
+        
+        // Queue to handle preloading without blocking the main thread
+        let preloadTimeout = null;
+
+        function startPreload() {
+            if (preloadCount === 0) return;
+            
+            clearTimeout(preloadTimeout);
+            
+            // Determine how many pages to preload based on setting
+            let pagesToLoad = preloadCount === 'unlimited' ? (totalPages - currentPage) : parseInt(preloadCount);
+            
+            let pageToLoad = currentPage + 1;
+            let loadedCount = 0;
+
+            const loadNextInQueue = () => {
+                if (loadedCount >= pagesToLoad || pageToLoad > totalPages) return;
+                if (preloadedCache.has(pageToLoad)) {
+                    // Already preloaded, skip to next
+                    pageToLoad++;
+                    loadedCount++;
+                    loadNextInQueue();
+                } else {
+                    preloadPage(pageToLoad).then(() => {
+                        pageToLoad++;
+                        loadedCount++;
+                        // Wait 150ms before loading next to keep UI smooth
+                        preloadTimeout = setTimeout(loadNextInQueue, 150);
+                    });
+                }
+            };
+
+            loadNextInQueue();
+        }
+
+        async function preloadPage(num) {
+            if (!pdfDoc || preloadedCache.has(num)) return;
+            
+            preloadedCache.set(num, 'loading'); // Mark as loading
+            
             try {
                 const page = await pdfDoc.getPage(num);
                 const viewport = page.getViewport({ scale: currentScale });
                 
-                // Handle High DPI screens for crisp rendering
+                const offCanvas = document.createElement('canvas');
                 const outputScale = window.devicePixelRatio || 1;
                 
-                canvas.width = Math.floor(viewport.width * outputScale);
-                canvas.height = Math.floor(viewport.height * outputScale);
-                canvas.style.width = Math.floor(viewport.width) + "px";
-                canvas.style.height = Math.floor(viewport.height) + "px";
+                offCanvas.width = Math.floor(viewport.width * outputScale);
+                offCanvas.height = Math.floor(viewport.height * outputScale);
+                offCanvas.style.width = Math.floor(viewport.width) + "px";
+                offCanvas.style.height = Math.floor(viewport.height) + "px";
 
-                const transform = outputScale !== 1 
-                    ? [outputScale, 0, 0, outputScale, 0, 0] 
-                    : null;
+                const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
 
-                const renderContext = {
-                    canvasContext: ctx,
+                await page.render({
+                    canvasContext: offCanvas.getContext('2d'),
                     transform: transform,
                     viewport: viewport
-                };
+                }).promise;
 
-                await page.render(renderContext).promise;
-                
-                canvas.style.opacity = '1';
-                spinner.style.display = 'none';
-                isRendering = false;
-            } catch (err) {
-                console.error("Render Error:", err);
-                isRendering = false;
+                preloadedCache.set(num, offCanvas);
+            } catch (e) {
+                console.log("Preload error:", e);
+                preloadedCache.delete(num); // Remove failed state
             }
         }
 
