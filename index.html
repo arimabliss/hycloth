@@ -17,15 +17,14 @@
             --text-muted: #888888;
             --accent-gold: #e6b800;
             --accent-gold-glow: rgba(230, 184, 0, 0.4);
-            --glass-bg: rgba(15, 15, 15, 0.75);
-            --glass-border: rgba(230, 184, 0, 0.15);
+            --glass-bg: rgba(15, 15, 15, 0.85);
+            --glass-border: rgba(230, 184, 0, 0.2);
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            user-select: none; /* Prevents text highlighting while clicking to turn pages */
         }
 
         body {
@@ -39,413 +38,197 @@
             overflow-x: hidden;
         }
 
-        .logo-font {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
+        .logo-font { font-family: 'Cinzel', serif; letter-spacing: 5px; text-transform: uppercase; }
 
         /* Header */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: linear-gradient(to bottom, rgba(3,3,3,0.95) 0%, rgba(3,3,3,0) 100%);
-            backdrop-filter: blur(10px);
-            pointer-events: none; /* Let clicks pass through to the reader */
+            position: fixed; top: 0; width: 100%; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; background: linear-gradient(to bottom, rgba(3,3,3,0.95) 0%, rgba(3,3,3,0) 100%);
+            backdrop-filter: blur(10px); pointer-events: none;
         }
 
-        .logo-container {
-            pointer-events: auto;
-        }
-
-        .logo-text {
-            font-size: 2.2rem;
-            color: #fff;
-            position: relative;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .logo-text span {
-            color: var(--accent-gold);
-            font-weight: 800;
-            text-shadow: 0 0 15px var(--accent-gold-glow);
-        }
-
-        .subtitle {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            letter-spacing: 7px;
-            text-transform: uppercase;
-            margin-top: 5px;
-            text-align: center;
-        }
+        .logo-container { pointer-events: auto; }
+        .logo-text { font-size: 2.2rem; color: #fff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+        .logo-text span { color: var(--accent-gold); font-weight: 800; text-shadow: 0 0 15px var(--accent-gold-glow); }
+        .subtitle { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 7px; text-transform: uppercase; margin-top: 5px; text-align: center; }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 100px 20px; position: relative;
         }
 
         .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('cover.jpg'); /* Cover Image */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            z-index: -1;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('cover.jpg'); /* Replace with your cover */
+            background-size: cover; background-position: center; opacity: 0.2; z-index: -1;
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
         }
 
-        .hero-title {
-            font-size: 6rem;
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 0 0 40px rgba(230, 184, 0, 0.3);
-            animation: breathe 4s infinite alternate;
-        }
-
+        .hero-title { font-size: 6rem; margin-bottom: 20px; color: #fff; text-shadow: 0 0 40px rgba(230, 184, 0, 0.3); animation: breathe 4s infinite alternate; }
         @keyframes breathe {
             0% { text-shadow: 0 0 20px rgba(230, 184, 0, 0.2); transform: scale(1); }
             100% { text-shadow: 0 0 50px rgba(230, 184, 0, 0.5); transform: scale(1.02); }
         }
 
-        .hero-desc {
-            max-width: 600px;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
+        .hero-desc { max-width: 600px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px; }
 
         /* Catalog Section */
-        .catalog-section {
-            padding: 50px 10% 100px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 50px;
-            color: #fff;
-            text-align: center;
-            position: relative;
-        }
-
+        .catalog-section { padding: 50px 10% 100px; display: flex; flex-direction: column; align-items: center; }
+        .section-title { font-size: 2rem; margin-bottom: 50px; color: #fff; text-align: center; position: relative; }
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
 
         /* Premium Chapter Card */
         .chapter-card {
-            width: 100%;
-            max-width: 800px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 40px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chapter-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(230, 184, 0, 0.08), transparent);
-            transform: skewX(-25deg);
-            transition: left 0.7s ease;
+            width: 100%; max-width: 800px; background: var(--glass-bg);
+            border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px;
+            backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            transition: all 0.4s ease; position: relative; overflow: hidden;
         }
 
         .chapter-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(230, 184, 0, 0.5);
+            transform: translateY(-5px); border-color: rgba(230, 184, 0, 0.6);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(230, 184, 0, 0.15);
         }
 
-        .chapter-card:hover::before {
-            left: 200%;
-        }
-
-        .chapter-info {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chapter-num {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: var(--accent-gold);
-            letter-spacing: 2px;
-        }
-
-        .chapter-name {
-            font-size: 2rem;
-            color: #fff;
-            font-weight: 600;
-        }
+        .chapter-info { display: flex; flex-direction: column; gap: 10px; }
+        .chapter-num { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--accent-gold); letter-spacing: 2px; }
+        .chapter-name { font-size: 2rem; color: #fff; font-weight: 600; }
 
         .btn-read {
-            background: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 15px 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(230, 184, 0, 0.1);
+            background: transparent; border: 1px solid var(--accent-gold); color: var(--accent-gold);
+            padding: 15px 40px; font-size: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 0 15px rgba(230, 184, 0, 0.1);
         }
 
-        .chapter-card:hover .btn-read {
-            background: var(--accent-gold);
-            color: #000;
-            box-shadow: 0 0 25px rgba(230, 184, 0, 0.6);
-        }
+        .chapter-card:hover .btn-read { background: var(--accent-gold); color: #000; box-shadow: 0 0 25px rgba(230, 184, 0, 0.6); }
 
         /* --------------------------------
-           MULTI-PAGE CONTINUOUS VIEWER
+           THE VIEWER SYSTEM
         ----------------------------------- */
         #viewer-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #050505;
-            z-index: 2000;
-            flex-direction: column;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #050505; z-index: 2000; flex-direction: column; overflow: hidden;
         }
 
         /* Floating Top Bar */
         .viewer-toolbar {
-            position: absolute;
-            top: 20px; left: 50%;
-            transform: translateX(-50%);
-            width: 95%; max-width: 900px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background: rgba(10, 10, 10, 0.85);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
-            z-index: 10;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: opacity 0.3s;
+            position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+            width: 95%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 25px; background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 50px; backdrop-filter: blur(15px); z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: opacity 0.3s;
         }
 
-        .viewer-title {
-            font-size: 1rem;
-            color: var(--accent-gold);
-            font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
-            margin-left: 10px;
-        }
-
-        .toolbar-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .viewer-title { font-size: 1rem; color: var(--accent-gold); font-family: 'Cinzel', serif; letter-spacing: 2px; }
+        .toolbar-controls { display: flex; align-items: center; gap: 15px; }
 
         .control-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1rem;
-            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff; height: 36px; padding: 0 15px; border-radius: 20px;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            font-size: 0.9rem; transition: all 0.2s ease;
         }
 
-        .control-btn:hover {
-            background: var(--accent-gold);
-            color: #000;
-            border-color: var(--accent-gold);
+        .control-btn:hover { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
+        .control-btn.close-btn { background: rgba(255, 50, 50, 0.1); border-color: rgba(255, 50, 50, 0.3); color: #ff6b6b; }
+        .control-btn.close-btn:hover { background: #ff4d4d; color: #fff; border-color: #ff4d4d; }
+        
+        .page-indicator { font-size: 0.9rem; font-weight: 600; color: #fff; min-width: 70px; text-align: center; }
+
+        /* Main View Area */
+        .viewer-main {
+            flex: 1; position: relative; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; /* No scrolling here */
         }
 
-        .control-btn.close-btn {
-            width: auto;
-            border-radius: 20px;
-            padding: 0 15px;
-            background: rgba(255, 50, 50, 0.1);
-            border-color: rgba(255, 50, 50, 0.3);
-            color: #ff6b6b;
+        /* Standard Canvas (LTR/RTL) */
+        #canvas-container {
+            width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;
+            padding: 80px 60px; /* Space for toolbar and side arrows */
+        }
+        
+        #main-canvas {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            box-shadow: 0 0 40px rgba(0,0,0,0.9); border-radius: 4px; background: #111;
+            transition: opacity 0.2s ease;
         }
 
-        .control-btn.close-btn:hover {
-            background: #ff4d4d;
-            color: #fff;
-            border-color: #ff4d4d;
+        /* Webtoon Scroll Container (Hidden by default) */
+        #webtoon-container {
+            display: none; width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden;
+            padding: 80px 0 50px; flex-direction: column; align-items: center; scroll-behavior: smooth;
         }
 
-        .page-indicator {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-main);
-            min-width: 60px;
-            text-align: center;
+        .webtoon-page-wrapper {
+            width: 100%; max-width: 800px; margin-bottom: 2px; /* Tiny gap between webtoon slices */
+            display: flex; justify-content: center; min-height: 200px; position: relative;
         }
 
-        /* Scrollable Canvas Area */
-        .scroll-container {
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 100px 20px 50px;
-            scroll-behavior: smooth;
-        }
+        .webtoon-page-wrapper canvas { width: 100%; height: auto; display: block; }
 
-        /* Page Wrapper */
-        .page-wrapper {
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            background: #111; /* Placeholder color while loading */
-            border-radius: 4px;
-            position: relative;
-            /* Dynamic aspect ratio prevents layout shifts */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 300px;
+        /* Navigation Buttons (LTR/RTL) */
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 60px; height: 60px; border-radius: 50%; background: var(--glass-bg);
+            border: 1px solid var(--glass-border); color: var(--accent-gold); font-size: 2rem;
+            display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10;
+            backdrop-filter: blur(10px); transition: all 0.2s ease; opacity: 0.7;
         }
-
-        .page-wrapper canvas {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .page-wrapper.loaded canvas {
-            opacity: 1;
-        }
-
-        .page-wrapper.loaded {
-            background: transparent;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
-        }
-
-        .page-loader {
-            position: absolute;
-            width: 30px; height: 30px;
-            border: 2px solid rgba(230, 184, 0, 0.1);
-            border-top-color: var(--accent-gold);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        
+        .nav-btn:hover { opacity: 1; background: var(--accent-gold); color: #000; box-shadow: 0 0 20px var(--accent-gold-glow); }
+        #prev-btn { left: 20px; }
+        #next-btn { right: 20px; }
 
         /* Settings Panel */
         .settings-panel {
-            position: absolute;
-            top: 80px; right: 5%;
-            background: rgba(15, 15, 15, 0.95);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 20px;
-            backdrop-filter: blur(20px);
-            z-index: 20;
-            display: none;
-            flex-direction: column;
-            gap: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            width: 250px;
+            position: absolute; top: 70px; right: 5%; background: #111;
+            border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px;
+            z-index: 20; display: none; flex-direction: column; gap: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9); width: 260px;
         }
 
-        .settings-panel.active {
-            display: flex;
+        .settings-panel.active { display: flex; }
+        .setting-group { display: flex; flex-direction: column; gap: 10px; }
+        .setting-group label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        
+        .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .opt-btn {
+            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; padding: 8px 5px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: 0.2s;
+            white-space: nowrap;
         }
+        .opt-btn.active, .opt-btn:hover { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); font-weight: bold; }
 
-        .setting-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        /* Loading Spinner */
+        .spinner {
+            position: absolute; width: 40px; height: 40px; border: 3px solid rgba(230, 184, 0, 0.1);
+            border-top-color: var(--accent-gold); border-radius: 50%; animation: spin 1s linear infinite;
+            z-index: 5; pointer-events: none;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .setting-group label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Click Zones */
+        .click-zone {
+            position: absolute; top: 0; bottom: 0; width: 30%; z-index: 5; cursor: pointer;
         }
+        .zone-left { left: 0; }
+        .zone-right { right: 0; }
 
-        .quality-options {
-            display: flex;
-            gap: 10px;
-        }
-
-        .quality-btn {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            padding: 8px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: 0.2s;
-        }
-
-        .quality-btn.active, .quality-btn:hover {
-            background: var(--accent-gold);
-            color: #000;
-            border-color: var(--accent-gold);
-            font-weight: bold;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
             .chapter-card { flex-direction: column; text-align: center; gap: 30px; padding: 30px; }
             .chapter-info { align-items: center; }
             .viewer-title { display: none; }
-            .toolbar-controls { width: 100%; justify-content: space-between; }
+            #canvas-container { padding: 70px 10px; }
+            .nav-btn { width: 40px; height: 40px; font-size: 1.2rem; }
             .settings-panel { right: 50%; transform: translateX(50%); top: 70px; width: 90%; }
         }
     </style>
@@ -464,7 +247,7 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <h1 class="hero-title logo-font">S<span style="color: var(--accent-gold);">O</span>ULSTAKER</h1>
-        <p class="hero-desc">In a world shattered by cosmic forces, one soul must traverse the ruins to uncover the truth. Experience the dark fantasy epic.</p>
+        <p class="hero-desc">In a world shattered by cosmic forces, one soul must traverse the ruins to uncover the truth.</p>
     </section>
 
     <!-- Catalog Section -->
@@ -480,241 +263,294 @@
         </div>
     </section>
 
-    <!-- Multi-Page Continuous Viewer Overlay -->
+    <!-- Viewer Overlay -->
     <div id="viewer-overlay">
         
-        <!-- Top Toolbar -->
-        <div class="viewer-toolbar" id="toolbar">
-            <div class="viewer-title" id="viewer-title-text">Loading...</div>
+        <!-- Toolbar -->
+        <div class="viewer-toolbar">
+            <div class="viewer-title" id="viewer-title-text">Chapter 1</div>
             
             <div class="toolbar-controls">
-                <span class="page-indicator" id="current-page-indicator">0 / 0</span>
-                <button class="control-btn" id="settings-btn" title="Settings">⚙</button>
-                <button class="control-btn close-btn" onclick="closeViewer()" title="Close">Close</button>
+                <span class="page-indicator" id="page-indicator">0 / 0</span>
+                <button class="control-btn" id="settings-btn">Settings ⚙</button>
+                <button class="control-btn close-btn" onclick="closeViewer()">Close ✕</button>
             </div>
         </div>
 
-        <!-- Settings Panel -->
+        <!-- Settings Dropdown -->
         <div class="settings-panel" id="settings-panel">
             <div class="setting-group">
-                <label>Render Quality</label>
-                <div class="quality-options">
-                    <button class="quality-btn" data-scale="1.0" onclick="changeQuality(1.0, this)">Low</button>
-                    <button class="quality-btn active" data-scale="1.5" onclick="changeQuality(1.5, this)">Med</button>
-                    <button class="quality-btn" data-scale="2.0" onclick="changeQuality(2.0, this)">High</button>
+                <label>Reading Mode</label>
+                <div class="btn-group">
+                    <button class="opt-btn mode-btn active" data-mode="ltr" onclick="setMode('ltr')">Left to Right</button>
+                    <button class="opt-btn mode-btn" data-mode="rtl" onclick="setMode('rtl')">Right to Left</button>
+                    <button class="opt-btn mode-btn" data-mode="webtoon" onclick="setMode('webtoon')">Webtoon</button>
                 </div>
-                <span style="font-size: 0.7rem; color: #666; margin-top: 5px;">Higher quality uses more memory.</span>
+            </div>
+            <div class="setting-group">
+                <label>Render Quality</label>
+                <div class="btn-group">
+                    <button class="opt-btn quality-btn" data-scale="1.0" onclick="setQuality(1.0)">Low</button>
+                    <button class="opt-btn quality-btn active" data-scale="1.5" onclick="setQuality(1.5)">Med</button>
+                    <button class="opt-btn quality-btn" data-scale="2.0" onclick="setQuality(2.0)">High</button>
+                </div>
             </div>
         </div>
 
-        <!-- Scroll Container for Pages -->
-        <div class="scroll-container" id="scroll-container">
-            <!-- Pages will be injected here via JS -->
+        <!-- Main View Area -->
+        <div class="viewer-main">
+            <div class="spinner" id="spinner"></div>
+            
+            <!-- Standard View (LTR / RTL) -->
+            <div id="canvas-container">
+                <div class="click-zone zone-left" id="click-prev"></div>
+                <div class="click-zone zone-right" id="click-next"></div>
+                <canvas id="main-canvas"></canvas>
+            </div>
+
+            <!-- Webtoon View (Scrollable) -->
+            <div id="webtoon-container"></div>
         </div>
+
+        <!-- Floating Navigation Buttons -->
+        <button class="nav-btn" id="prev-btn">❮</button>
+        <button class="nav-btn" id="next-btn">❯</button>
 
     </div>
 
     <!-- JavaScript Logic -->
     <script>
-        // Set PDF.js worker path
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+        // State
         let pdfDoc = null;
-        let currentScale = 1.5; // Default Quality
-        const scrollContainer = document.getElementById('scroll-container');
+        let pageNum = 1;
+        let totalPages = 0;
+        let currentScale = 1.5;
+        let currentMode = 'ltr'; // 'ltr', 'rtl', 'webtoon'
+        let isRendering = false;
+        
+        // DOM Elements
         const viewerOverlay = document.getElementById('viewer-overlay');
-        const pageIndicator = document.getElementById('current-page-indicator');
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
+        const spinner = document.getElementById('spinner');
+        const pageIndicator = document.getElementById('page-indicator');
         const settingsPanel = document.getElementById('settings-panel');
-        let observer = null;
-
-        // Toggle Settings Panel
+        const canvasContainer = document.getElementById('canvas-container');
+        const webtoonContainer = document.getElementById('webtoon-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        // Toggle Settings
         document.getElementById('settings-btn').addEventListener('click', () => {
             settingsPanel.classList.toggle('active');
         });
 
-        // Open Viewer & Initialize Multi-page setup
+        // Open Viewer
         async function openViewer(pdfUrl, title) {
             viewerOverlay.style.display = 'flex';
             document.getElementById('viewer-title-text').textContent = title;
             document.body.style.overflow = 'hidden';
-            scrollContainer.innerHTML = ''; // Clear previous
+            pageNum = 1;
+            spinner.style.display = 'block';
             
             try {
                 pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
-                buildPagePlaceholders(pdfDoc.numPages);
-                setupIntersectionObserver();
+                totalPages = pdfDoc.numPages;
+                updateUI();
+                renderCurrentView();
             } catch (error) {
-                alert("Error loading PDF. Are you running this on a local server?");
+                alert("Error loading PDF. Ensure you are running this on a local server.");
                 console.error(error);
             }
         }
 
-        // Close Viewer
         function closeViewer() {
             viewerOverlay.style.display = 'none';
             document.body.style.overflow = 'auto';
-            scrollContainer.innerHTML = ''; // Destroy pages to free memory
+            settingsPanel.classList.remove('active');
             pdfDoc = null;
-            if (observer) observer.disconnect();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            webtoonContainer.innerHTML = ''; // Clear webtoon memory
         }
 
-        // Create empty wrappers for all pages to enable scrolling
-        function buildPagePlaceholders(numPages) {
-            for (let i = 1; i <= numPages; i++) {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'page-wrapper';
-                wrapper.id = `page-wrapper-${i}`;
-                wrapper.dataset.pageNum = i;
-                
-                // Add loading spinner
-                const loader = document.createElement('div');
-                loader.className = 'page-loader';
-                wrapper.appendChild(loader);
-                
-                scrollContainer.appendChild(wrapper);
+        // Switch Modes
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.mode-btn[data-mode="${mode}"]`).classList.add('active');
+            
+            if (mode === 'webtoon') {
+                canvasContainer.style.display = 'none';
+                webtoonContainer.style.display = 'flex';
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                initWebtoon();
+            } else {
+                canvasContainer.style.display = 'flex';
+                webtoonContainer.style.display = 'none';
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+                updateUI();
+                renderPage(pageNum);
             }
-            pageIndicator.textContent = `1 / ${numPages}`;
         }
 
-        // Intersection Observer: Loads pages only when they enter the view
-        function setupIntersectionObserver() {
-            const options = {
-                root: scrollContainer,
-                rootMargin: '100% 0px', // Pre-load pages 1 screen height before they are seen
-                threshold: 0.01
-            };
-
-            observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const pageNum = parseInt(entry.target.dataset.pageNum);
-                        renderPage(pageNum);
-                        
-                        // Update UI Indicator
-                        pageIndicator.textContent = `${pageNum} / ${pdfDoc.numPages}`;
-                        
-                        // Pre-load next 2 pages explicitly
-                        if (pageNum + 1 <= pdfDoc.numPages) renderPage(pageNum + 1);
-                        if (pageNum + 2 <= pdfDoc.numPages) renderPage(pageNum + 2);
-                    }
-                });
-            }, options);
-
-            // Observe all placeholders
-            document.querySelectorAll('.page-wrapper').forEach(wrapper => {
-                observer.observe(wrapper);
-            });
+        // Change Quality
+        function setQuality(scale) {
+            currentScale = scale;
+            document.querySelectorAll('.quality-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.quality-btn[data-scale="${scale}"]`).classList.add('active');
+            
+            if (currentMode === 'webtoon') {
+                webtoonContainer.innerHTML = ''; // Rebuild webtoon
+                initWebtoon();
+            } else {
+                renderPage(pageNum);
+            }
         }
 
-        // Render a specific page
+        // Update Navigation UI
+        function updateUI() {
+            pageIndicator.textContent = `${pageNum} / ${totalPages}`;
+            
+            if (currentMode === 'ltr') {
+                prevBtn.innerHTML = '❮';
+                nextBtn.innerHTML = '❯';
+                document.getElementById('click-prev').onclick = () => changePage(-1);
+                document.getElementById('click-next').onclick = () => changePage(1);
+            } else if (currentMode === 'rtl') {
+                prevBtn.innerHTML = '❯'; // Flipped for Manga
+                nextBtn.innerHTML = '❮';
+                document.getElementById('click-prev').onclick = () => changePage(1);
+                document.getElementById('click-next').onclick = () => changePage(-1);
+            }
+            
+            prevBtn.style.opacity = (pageNum <= 1) ? '0.3' : '0.7';
+            nextBtn.style.opacity = (pageNum >= totalPages) ? '0.3' : '0.7';
+        }
+
+        // Page Navigation logic
+        function changePage(direction) {
+            if (isRendering) return;
+            if (currentMode === 'rtl') direction *= -1; // Invert for Manga reading
+            
+            let newPage = pageNum + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                pageNum = newPage;
+                updateUI();
+                renderPage(pageNum);
+            }
+        }
+
+        // Buttons Event Listeners
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); changePage(-1); });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); changePage(1); });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (viewerOverlay.style.display === 'flex' && currentMode !== 'webtoon') {
+                if (e.key === 'ArrowLeft') changePage(-1);
+                if (e.key === 'ArrowRight') changePage(1);
+                if (e.key === 'Escape') closeViewer();
+            }
+        });
+
+        // --- STANDARD RENDER (LTR / RTL) ---
         async function renderPage(num) {
-            const wrapper = document.getElementById(`page-wrapper-${num}`);
-            
-            // If already rendered at correct scale, skip
-            if (wrapper.dataset.rendered === 'true' && wrapper.dataset.scale === currentScale.toString()) return;
-            
-            // Mark as rendering to prevent duplicate calls
-            wrapper.dataset.rendered = 'rendering';
-            
+            if (!pdfDoc) return;
+            isRendering = true;
+            spinner.style.display = 'block';
+            canvas.style.opacity = '0.5';
+
             try {
                 const page = await pdfDoc.getPage(num);
                 const viewport = page.getViewport({ scale: currentScale });
                 
-                // Create or reuse canvas
-                let canvas = wrapper.querySelector('canvas');
-                if (!canvas) {
-                    canvas = document.createElement('canvas');
-                    wrapper.appendChild(canvas);
-                }
-                
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
-                
-                const renderContext = {
-                    canvasContext: canvas.getContext('2d'),
-                    viewport: viewport
-                };
 
+                const renderContext = { canvasContext: ctx, viewport: viewport };
                 await page.render(renderContext).promise;
                 
-                // Cleanup loader and mark as complete
-                const loader = wrapper.querySelector('.page-loader');
-                if (loader) loader.remove();
+                canvas.style.opacity = '1';
+                spinner.style.display = 'none';
+                isRendering = false;
                 
-                wrapper.classList.add('loaded');
-                wrapper.dataset.rendered = 'true';
-                wrapper.dataset.scale = currentScale;
-
-                // Memory Optimization: Clear canvases for pages far away
-                cleanupMemory(num);
-
+                // Preload next page in background if possible
+                preloadStandardPage(num + 1);
             } catch (err) {
-                console.log("Render error on page", num, err);
+                console.error("Render error:", err);
+                isRendering = false;
             }
         }
 
-        // Unload memory of pages too far from current view to prevent mobile crashes
-        function cleanupMemory(currentPage) {
-            document.querySelectorAll('.page-wrapper').forEach(wrapper => {
-                const num = parseInt(wrapper.dataset.pageNum);
-                // If page is more than 5 pages away from current page, clear its canvas memory
-                if (Math.abs(num - currentPage) > 5 && wrapper.dataset.rendered === 'true') {
-                    const canvas = wrapper.querySelector('canvas');
-                    if (canvas) {
-                        canvas.width = 0; 
-                        canvas.height = 0;
-                    }
-                    wrapper.classList.remove('loaded');
-                    wrapper.dataset.rendered = 'false';
-                    
-                    // Re-add loader if it's missing
-                    if (!wrapper.querySelector('.page-loader')) {
-                        const loader = document.createElement('div');
-                        loader.className = 'page-loader';
-                        wrapper.appendChild(loader);
-                    }
-                }
-            });
+        function preloadStandardPage(num) {
+            if (num > totalPages || num < 1) return;
+            pdfDoc.getPage(num).then(page => {
+                const viewport = page.getViewport({ scale: currentScale });
+                const offCanvas = document.createElement('canvas');
+                offCanvas.height = viewport.height;
+                offCanvas.width = viewport.width;
+                page.render({ canvasContext: offCanvas.getContext('2d'), viewport: viewport });
+            }).catch(() => {});
         }
 
-        // Handle Quality Changes
-        function changeQuality(newScale, btnElement) {
-            if (currentScale === newScale) return;
-            currentScale = newScale;
+        // --- WEBTOON RENDER ---
+        async function initWebtoon() {
+            spinner.style.display = 'block';
+            let startPage = Math.max(1, pageNum - 1);
+            let endPage = Math.min(totalPages, startPage + 4); // Render current + next 4 initially
             
-            // Update UI
-            document.querySelectorAll('.quality-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+            for (let i = startPage; i <= endPage; i++) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'webtoon-page-wrapper';
+                wrapper.id = `webtoon-page-${i}`;
+                wrapper.dataset.page = i;
+                webtoonContainer.appendChild(wrapper);
+                renderWebtoonPage(i, wrapper);
+            }
+            spinner.style.display = 'none';
+
+            // Setup infinite scroll listener
+            webtoonContainer.onscroll = () => {
+                if (webtoonContainer.scrollHeight - webtoonContainer.scrollTop - webtoonContainer.clientHeight < 1000) {
+                    loadMoreWebtoonPages();
+                }
+            };
+        }
+
+        async function renderWebtoonPage(num, wrapper) {
+            try {
+                const page = await pdfDoc.getPage(num);
+                // Use higher scale for webtoon for crisp text
+                const viewport = page.getViewport({ scale: currentScale * 1.2 });
+                const canvas = document.createElement('canvas');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                wrapper.appendChild(canvas);
+                await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+            } catch (e) { console.log(e); }
+        }
+
+        function loadMoreWebtoonPages() {
+            const wrappers = document.querySelectorAll('.webtoon-page-wrapper');
+            const lastPageLoaded = parseInt(wrappers[wrappers.length - 1].dataset.page);
             
-            // Re-render current visible pages
-            const currentPage = parseInt(pageIndicator.textContent.split(' ')[0]);
-            
-            // Reset all pages so they re-render at the new scale
-            document.querySelectorAll('.page-wrapper').forEach(wrapper => {
-                wrapper.dataset.rendered = 'false';
-                wrapper.classList.remove('loaded');
-                const canvas = wrapper.querySelector('canvas');
-                if(canvas) { canvas.width = 0; canvas.height = 0; }
+            if (lastPageLoaded < totalPages) {
+                const nextPage = lastPageLoaded + 1;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'webtoon-page-wrapper';
+                wrapper.id = `webtoon-page-${nextPage}`;
+                wrapper.dataset.page = nextPage;
+                webtoonContainer.appendChild(wrapper);
+                renderWebtoonPage(nextPage, wrapper);
                 
-                if (!wrapper.querySelector('.page-loader')) {
-                    const loader = document.createElement('div');
-                    loader.className = 'page-loader';
-                    wrapper.appendChild(loader);
-                }
-            });
-
-            // Force render the current page and pre-load neighbors
-            renderPage(currentPage);
-            if (currentPage + 1 <= pdfDoc.numPages) renderPage(currentPage + 1);
-            if (currentPage - 1 > 0) renderPage(currentPage - 1);
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (viewerOverlay.style.display === 'flex') {
-                if (e.key === 'Escape') closeViewer();
+                // Update indicator
+                pageIndicator.textContent = `${nextPage} / ${totalPages}`;
             }
-        });
+        }
     </script>
 </body>
 </html>
