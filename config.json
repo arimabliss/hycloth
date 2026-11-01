@@ -1,0 +1,29 @@
+{
+  "site": {
+    "title": "SOULSTAKER",
+    "subtitle": "A Comic by Aarav Jha",
+    "heroDesc": "In a world shattered by cosmic forces, one soul must traverse the ruins to uncover the truth. Experience the dark fantasy epic."
+  },
+  "assets": {
+    "bgDesktop": "bng.png",
+    "bgMobile": "bngmob.png",
+    "coverImage": "cover.jpg"
+  },
+  "defaults": {
+    "quality": 1.5,
+    "preload": 5,
+    "direction": "ltr"
+  },
+  "chapters": [
+    {
+      "id": 1,
+      "title": "The First Glimpse",
+      "file": "chapter1.pdf"
+    },
+    {
+      "id": 2,
+      "title": "The Awakening",
+      "file": "chapter2.pdf"
+    }
+  ]
+}
