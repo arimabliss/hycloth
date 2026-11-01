@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SOULSTAKER | Premium Catalog</title>
+    <title>Loading Catalog...</title>
     
     <!-- PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600&display=swap');
 
         :root {
-            --bg-base: #050505;
+            --bg-base: #030303;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #a1a1aa;
             --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.4);
             
-            /* Premium Glassmorphism */
-            --glass-bg: rgba(255, 255, 255, 0.03);
+            /* Advanced 3D Glassmorphism */
+            --glass-bg: rgba(20, 20, 20, 0.4);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: blur(24px);
-            --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            --glass-blur: blur(30px);
+            --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -1px 1px rgba(0, 0, 0, 0.5);
         }
 
         * {
@@ -36,31 +37,33 @@
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            perspective: 1000px; /* Enables 3D depth globally */
         }
 
-        /* Cinematic Background Layer */
+        /* Cinematic Background */
         .bg-layer {
-            position: fixed;
-            top: -5%; left: -5%; width: 110%; height: 110%;
-            background-image: url('bng.png'); /* Desktop Background */
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-            opacity: 0.4;
-            animation: slowPan 30s infinite alternate ease-in-out;
+            position: fixed; top: -5%; left: -5%; width: 110%; height: 110%;
+            background-size: cover; background-position: center; z-index: -3; opacity: 0.3;
+            animation: slowPan 40s infinite alternate ease-in-out;
+            transition: background-image 0.5s ease;
         }
 
-        /* Dark gradient overlay to ensure text readability */
+        /* Adds a subtle film grain over the background */
+        .bg-noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+            z-index: -2; pointer-events: none;
+        }
+
         .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 0.95) 80%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 0.98) 80%);
             z-index: -1;
         }
 
         @keyframes slowPan {
             0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.05) translate(-1%, -1%); }
+            100% { transform: scale(1.08) translate(-2%, -2%); }
         }
 
         .logo-font { font-family: 'Cinzel', serif; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -69,36 +72,30 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%; padding: 20px 40px;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 100; background: rgba(5, 5, 5, 0.4); backdrop-filter: var(--glass-blur);
+            z-index: 100; background: rgba(5, 5, 5, 0.3); backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--glass-border);
-            transition: background 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .nav-logo { font-size: 1.5rem; color: var(--text-primary); font-weight: 700; letter-spacing: 2px; }
-        .nav-logo span { color: var(--accent-gold); text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+        .nav-logo { font-size: 1.6rem; color: var(--text-primary); font-weight: 900; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .nav-logo span { color: var(--accent-gold); text-shadow: 0 0 20px var(--accent-gold-glow); }
         
         .nav-links { display: flex; gap: 40px; }
         .nav-links a { 
             color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; 
-            transition: color 0.3s, text-shadow 0.3s; position: relative;
+            transition: all 0.3s; position: relative; padding: 5px 0;
         }
+        .nav-links a:hover { color: var(--text-primary); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px; 
-            background: var(--accent-gold); transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px;
+            background: var(--accent-gold); transition: all 0.3s; transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--accent-gold-glow); opacity: 0;
         }
-        .nav-links a:hover { color: var(--text-primary); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover::after { width: 100%; opacity: 1; }
 
-        /* Scroll Animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Advanced Animations */
+        .reveal { opacity: 0; transform: translateY(40px) scale(0.95); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
@@ -106,85 +103,117 @@
         /* Hero Section */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px; position: relative;
+            text-align: center; padding: 0 20px; position: relative; z-index: 10;
         }
 
-        .hero-title { font-size: 5rem; font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: 0.05em; }
+        /* Floating 3D Glass Orb */
+        .glass-orb {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), rgba(0,0,0,0) 60%);
+            box-shadow: inset 0 0 80px rgba(212, 175, 55, 0.05), 0 0 100px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.03); z-index: -1;
+            animation: floatOrb 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            100% { transform: translate(-50%, -52%) rotate(5deg) scale(1.02); }
+        }
+
+        .hero-title { 
+            font-size: 6.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; 
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+        }
         .hero-title span { 
-            color: var(--accent-gold); 
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-            animation: pulseGlow 3s infinite alternate;
-        }
-        
-        @keyframes pulseGlow {
-            0% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
-            100% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+            background: linear-gradient(180deg, #ffe28a 0%, #d4af37 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px var(--accent-gold-glow));
         }
 
-        .hero-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.6; margin-bottom: 40px; font-weight: 300; }
+        .hero-desc { 
+            font-size: 1.2rem; color: var(--text-secondary); max-width: 650px; 
+            line-height: 1.8; margin-bottom: 50px; font-weight: 300; letter-spacing: 0.5px;
+        }
 
         .btn-primary {
-            background: var(--text-primary); color: var(--bg-base);
-            padding: 16px 40px; border-radius: 8px; font-weight: 600; font-size: 1rem;
-            text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-            position: relative; overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%); color: #000;
+            padding: 18px 50px; border-radius: 12px; font-weight: 700; font-size: 1.05rem;
+            text-decoration: none; border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1), inset 0 -3px 0 rgba(0,0,0,0.2);
+            position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 1px;
         }
-        .btn-primary::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            transition: left 0.5s ease;
+        .btn-primary:hover { 
+            transform: translateY(-5px) scale(1.02); 
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2), inset 0 -3px 0 rgba(0,0,0,0.2);
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); }
-        .btn-primary:hover::before { left: 100%; }
 
         /* Catalog Section */
-        .catalog { padding: 100px 10% 150px; display: flex; flex-direction: column; align-items: center; }
-        .section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; color: var(--text-primary); }
-        .section-title::after { content: ''; display: block; width: 80px; height: 1px; background: var(--accent-gold); margin: 15px auto 0; opacity: 0.6; }
+        .catalog { padding: 100px 5% 150px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
+        .section-title { font-size: 2.5rem; margin-bottom: 60px; text-align: center; font-weight: 700; letter-spacing: 2px; }
+        .section-title::after { content: ''; display: block; width: 100px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); margin: 15px auto 0; opacity: 0.8; box-shadow: 0 0 15px var(--accent-gold); }
 
-        /* Glass Card */
-        .chapter-card {
-            width: 100%; max-width: 850px; 
-            background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border); border-radius: 20px; padding: 45px;
-            box-shadow: var(--glass-shadow);
-            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
-        }
-
-        /* Glass Reflection Animation */
-        .chapter-card::before {
-            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
-            transform: skewX(-25deg); transition: left 0.8s ease;
-        }
-        .chapter-card:hover::before { left: 150%; }
+        /* 3D Glass Cards */
+        .chapter-list { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 25px; perspective: 1000px; }
         
-        .chapter-card:hover {
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px) scale(1.01);
+        .chapter-card-container {
+            width: 100%;
+            transition: transform 0.1s ease; /* Fast transition for mouse tracking */
+            transform-style: preserve-3d;
         }
 
-        .chapter-info { display: flex; flex-direction: column; gap: 8px; }
-        .chapter-num { font-size: 0.85rem; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
-        .chapter-name { font-size: 2rem; font-weight: 500; color: var(--text-primary); letter-spacing: 1px; }
+        .chapter-card {
+            width: 100%; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 50px;
+            box-shadow: var(--glass-shadow);
+            display: flex; justify-content: space-between; align-items: center; 
+            cursor: pointer; position: relative; overflow: hidden;
+            transform-style: preserve-3d; /* Enables inner 3D elements */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Dynamic Light Sheen (Reflection) */
+        .card-sheen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1;
+            transform: translateZ(1px); /* Pushes sheen slightly forward */
+        }
+
+        .chapter-card:hover { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.2); }
+        .chapter-card:hover .card-sheen { opacity: 1; }
+
+        /* Card Content - Popped forward in 3D */
+        .chapter-info { display: flex; flex-direction: column; gap: 8px; transform: translateZ(30px); pointer-events: none; }
+        .chapter-num { 
+            font-size: 0.85rem; color: var(--accent-gold); letter-spacing: 4px; text-transform: uppercase; font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+        .chapter-name { 
+            font-size: 2rem; font-weight: 600; color: var(--text-primary); letter-spacing: 1px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
 
         .btn-read {
-            background: transparent; border: 1px solid var(--glass-border); color: var(--text-primary);
-            padding: 14px 35px; border-radius: 30px; font-weight: 500; font-size: 1rem; transition: all 0.3s; cursor: pointer;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-primary);
+            padding: 14px 35px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; 
+            transition: all 0.3s; pointer-events: none; transform: translateZ(20px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
         }
-        .chapter-card:hover .btn-read { background: var(--text-primary); color: var(--bg-base); border-color: var(--text-primary); }
+        .chapter-card:hover .btn-read { 
+            background: var(--text-primary); color: var(--bg-base); border-color: var(--text-primary); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
 
         /* --------------------------------
-           PREMIUM VIEWER
+           PREMIUM VIEWER (Kept identical)
         ----------------------------------- */
         #viewer {
             display: flex; opacity: 0; visibility: hidden;
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #020202; z-index: 2000; flex-direction: column;
+            background: #020202; z-index: 9999; flex-direction: column;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         
@@ -213,7 +242,6 @@
 
         .page-indicator { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); min-width: 60px; text-align: center; }
 
-        /* Main View Area */
         .viewer-stage {
             flex: 1; position: relative; display: flex; justify-content: center; align-items: center;
             padding: 80px 20px; overflow: hidden;
@@ -225,12 +253,10 @@
             transition: opacity 0.2s ease; opacity: 0;
         }
 
-        /* Click Zones */
         .click-zone { position: absolute; top: 0; bottom: 0; width: 25%; cursor: pointer; z-index: 5; }
         .zone-left { left: 0; }
         .zone-right { right: 0; }
 
-        /* Side Arrows (Desktop) */
         .side-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(15, 15, 15, 0.5); backdrop-filter: blur(10px);
@@ -242,7 +268,6 @@
         #arrow-prev { left: 30px; }
         #arrow-next { right: 30px; }
 
-        /* Mobile Bottom Bar */
         .mobile-nav {
             display: none; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; padding: 12px 20px; background: rgba(15, 15, 15, 0.85);
@@ -253,7 +278,6 @@
 
         .mobile-nav .btn-icon { width: 44px; height: 44px; font-size: 1.2rem; }
 
-        /* Settings Panel */
         .settings-menu {
             position: absolute; top: 80px; right: 5%; width: 300px;
             background: rgba(10, 10, 10, 0.95); backdrop-filter: var(--glass-blur);
@@ -263,11 +287,7 @@
             max-height: 80vh; overflow-y: auto;
         }
         .settings-menu.active { display: flex; animation: fadeInDown 0.3s ease; }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         
         .setting-group { display: flex; flex-direction: column; gap: 10px; }
         .setting-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
@@ -280,7 +300,6 @@
         }
         .opt-btn.active, .opt-btn:hover { background: var(--text-primary); color: var(--bg-base); font-weight: 600; border-color: var(--text-primary); }
 
-        /* Spinner */
         .spinner {
             position: absolute; width: 40px; height: 40px;
             border: 2px solid rgba(255, 255, 255, 0.1); border-top-color: var(--accent-gold);
@@ -290,19 +309,21 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .bg-layer { background-image: url('bngmob.png'); } /* Mobile Background */
-            
+            .bg-layer { background-image: var(--mobile-bg); }
             nav { padding: 15px 20px; }
             .hero-title { font-size: 3.5rem; }
-            .chapter-card { flex-direction: column; text-align: center; gap: 25px; padding: 35px 20px; }
+            .glass-orb { width: 300px; height: 300px; }
+            
+            .chapter-card { flex-direction: column; text-align: center; gap: 20px; padding: 30px 20px; }
             .chapter-name { font-size: 1.6rem; }
+            /* Disable 3D tilt on mobile for performance */
+            .chapter-card-container { transform: none !important; } 
             
             .viewer-toolbar { width: 90%; top: 15px; padding: 10px 15px; }
             .viewer-title { display: none; }
             .page-indicator { display: none; } 
             
             .viewer-stage { padding: 70px 10px 100px; } 
-            
             .side-arrow { display: none; } 
             .mobile-nav { display: flex; } 
             
@@ -312,13 +333,14 @@
 </head>
 <body>
 
-    <!-- Cinematic Background -->
-    <div class="bg-layer"></div>
+    <!-- Cinematic Backgrounds -->
+    <div class="bg-layer" id="bg-layer"></div>
+    <div class="bg-noise"></div>
     <div class="bg-overlay"></div>
 
     <!-- Navigation -->
     <nav>
-        <div class="nav-logo logo-font">S<span>O</span>ULSTAKER</div>
+        <div class="nav-logo logo-font" id="nav-title">Loading...</div>
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#catalog">Catalog</a>
@@ -327,31 +349,24 @@
 
     <!-- Hero -->
     <section class="hero">
-        <h1 class="hero-title logo-font fade-up">S<span>O</span>ULSTAKER</h1>
-        <p class="hero-desc fade-up delay-1">In a world shattered by cosmic forces, one soul must traverse the ruins to uncover the truth. A dark fantasy epic by Aarav Jha.</p>
-        <a href="#catalog" class="btn-primary fade-up delay-2">Explore Chapters</a>
+        <div class="glass-orb"></div>
+        <h1 class="hero-title logo-font reveal" id="hero-title">...</h1>
+        <p class="hero-desc reveal delay-1" id="hero-desc">...</p>
+        <a href="#catalog" class="btn-primary reveal delay-2">Explore Chapters</a>
     </section>
 
     <!-- Catalog -->
     <section class="catalog" id="catalog">
-        <h2 class="section-title logo-font fade-up">Chapters</h2>
-        
-        <div class="chapter-card fade-up delay-1" onclick="openViewer()">
-            <div class="chapter-info">
-                <div class="chapter-num">Chapter 01</div>
-                <div class="chapter-name">The First Glimpse</div>
-            </div>
-            <button class="btn-read">Read Now</button>
+        <h2 class="section-title logo-font reveal">Chapters</h2>
+        <div class="chapter-list reveal delay-1" id="chapter-list">
+            <!-- Cards Generated by JS -->
         </div>
     </section>
 
-    <!-- Premium Viewer Modal -->
+    <!-- Viewer Modal (Logic Untouched) -->
     <div id="viewer">
-        
-        <!-- Floating Toolbar -->
         <div class="viewer-toolbar">
-            <div class="viewer-title logo-font">Chapter 1: The First Glimpse</div>
-            
+            <div class="viewer-title logo-font" id="viewer-title-text">...</div>
             <div class="toolbar-controls">
                 <span class="page-indicator" id="page-ui">1 / 1</span>
                 <button class="btn-icon" id="btn-settings" title="Settings">⚙</button>
@@ -359,12 +374,11 @@
             </div>
         </div>
 
-        <!-- Settings Menu -->
         <div class="settings-menu" id="settings-menu">
             <div class="setting-group">
                 <div class="setting-label">Reading Direction</div>
                 <div class="options-row">
-                    <button class="opt-btn dir-btn active" data-dir="ltr" onclick="setDirection('ltr')">Left to Right</button>
+                    <button class="opt-btn dir-btn" data-dir="ltr" onclick="setDirection('ltr')">Left to Right</button>
                     <button class="opt-btn dir-btn" data-dir="rtl" onclick="setDirection('rtl')">Right to Left</button>
                 </div>
             </div>
@@ -372,7 +386,7 @@
                 <div class="setting-label">Image Quality</div>
                 <div class="options-row">
                     <button class="opt-btn zoom-btn" data-scale="1.0" onclick="setQuality(1.0)">Standard</button>
-                    <button class="opt-btn zoom-btn active" data-scale="1.5" onclick="setQuality(1.5)">High</button>
+                    <button class="opt-btn zoom-btn" data-scale="1.5" onclick="setQuality(1.5)">High</button>
                     <button class="opt-btn zoom-btn" data-scale="2.0" onclick="setQuality(2.0)">Ultra</button>
                 </div>
             </div>
@@ -383,27 +397,20 @@
                     <button class="opt-btn preload-btn" data-preload="2" onclick="setPreload(2)">2</button>
                     <button class="opt-btn preload-btn" data-preload="4" onclick="setPreload(4)">4</button>
                     <button class="opt-btn preload-btn" data-preload="6" onclick="setPreload(6)">6</button>
-                    <button class="opt-btn preload-btn active" data-preload="unlimited" onclick="setPreload('unlimited')">∞</button>
+                    <button class="opt-btn preload-btn" data-preload="unlimited" onclick="setPreload('unlimited')">∞</button>
                 </div>
             </div>
         </div>
 
-        <!-- Main Stage -->
         <div class="viewer-stage">
             <div class="spinner" id="spinner"></div>
-            
-            <!-- Click Zones -->
-            <div class="click-zone zone-left" id="zone-prev" onclick="handleZoneClick('prev')"></div>
-            <div class="click-zone zone-right" id="zone-next" onclick="handleZoneClick('next')"></div>
-
-            <!-- Desktop Arrows -->
+            <div class="click-zone zone-left" onclick="handleZoneClick('prev')"></div>
+            <div class="click-zone zone-right" onclick="handleZoneClick('next')"></div>
             <button class="side-arrow" id="arrow-prev" onclick="handleZoneClick('prev')">❮</button>
             <button class="side-arrow" id="arrow-next" onclick="handleZoneClick('next')">❯</button>
-
             <canvas id="canvas-element"></canvas>
         </div>
 
-        <!-- Mobile Bottom Navigation -->
         <div class="mobile-nav">
             <button class="btn-icon" onclick="handleZoneClick('prev')">❮</button>
             <span class="page-indicator" id="mobile-page-ui" style="display:block; color: #fff;">1 / 1</span>
@@ -411,38 +418,132 @@
         </div>
     </div>
 
-    <!-- JavaScript Logic -->
+    <!-- App Logic -->
     <script>
-        // --- 1. SCROLL ANIMATIONS ---
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Run once
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-        });
-
-        // --- 2. VIEWER LOGIC ---
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        // State
+        // --- 1. GLOBAL STATE ---
+        let configData = null;
         let pdfDoc = null;
         let currentPage = 1;
         let totalPages = 0;
         let currentScale = 1.5;
         let direction = 'ltr'; 
         let isRendering = false;
-        let preloadCount = 'unlimited'; // Default matching the HTML active state
-        
-        // Preload Cache
+        let preloadCount = 5;
         const preloadedCache = new Map();
 
-        // DOM Elements
+        // --- 2. INITIALIZATION ---
+        document.addEventListener("DOMContentLoaded", async () => {
+            setupScrollAnimations();
+            
+            try {
+                const response = await fetch('config.json');
+                if (!response.ok) throw new Error("Config not found");
+                configData = await response.json();
+                applyConfig(configData);
+            } catch (error) {
+                console.error("Error loading config.json:", error);
+                document.getElementById('nav-title').innerHTML = "SOULSTAKER";
+                document.getElementById('hero-title').innerHTML = "SOULSTAKER";
+            }
+        });
+
+        function applyConfig(config) {
+            document.title = `${config.site.title} | Catalog`;
+            document.getElementById('nav-title').innerHTML = config.site.title.replace('O', '<span>O</span>');
+            document.getElementById('hero-title').innerHTML = config.site.title.replace('O', '<span>O</span>');
+            document.getElementById('hero-desc').textContent = config.site.heroDesc;
+
+            const bgLayer = document.getElementById('bg-layer');
+            bgLayer.style.backgroundImage = `url('${config.assets.bgDesktop}')`;
+            document.documentElement.style.setProperty('--mobile-bg', `url('${config.assets.bgMobile}')`);
+
+            setDirection(config.defaults.direction);
+            setQuality(config.defaults.quality, true);
+            setPreload(config.defaults.preload, true);
+
+            const listContainer = document.getElementById('chapter-list');
+            listContainer.innerHTML = ''; 
+
+            config.chapters.forEach((ch, index) => {
+                // Container for 3D perspective
+                const container = document.createElement('div');
+                container.className = `chapter-card-container reveal delay-${(index % 3) + 1}`;
+                
+                // Inner Card for 3D tilt
+                const card = document.createElement('div');
+                card.className = 'chapter-card';
+                card.onclick = () => openViewer(ch.file, `Chapter ${ch.id}: ${ch.title}`);
+                
+                // Sheen for reflection
+                card.innerHTML = `
+                    <div class="card-sheen"></div>
+                    <div class="chapter-info">
+                        <div class="chapter-num">Chapter ${String(ch.id).padStart(2, '0')}</div>
+                        <div class="chapter-name">${ch.title}</div>
+                    </div>
+                    <button class="btn-read">Read Now</button>
+                `;
+
+                // Attach 3D Mouse Tracking
+                card.addEventListener('mousemove', handle3DTilt);
+                card.addEventListener('mouseleave', reset3DTilt);
+
+                container.appendChild(card);
+                listContainer.appendChild(container);
+            });
+
+            setupScrollAnimations();
+        }
+
+        // --- 3. 3D MOUSE TRACKING LOGIC ---
+        function handle3DTilt(e) {
+            const card = e.currentTarget;
+            const sheen = card.querySelector('.card-sheen');
+            const rect = card.getBoundingClientRect();
+            
+            // Calculate mouse position relative to card center (from -1 to 1)
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            // Max rotation angles
+            const rotateX = y * -20; // Tilt up/down
+            const rotateY = x * 20;  // Tilt left/right
+
+            // Apply 3D transform to the card
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            
+            // Move the light sheen
+            sheen.style.background = `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(255,255,255,0.15) 0%, transparent 60%)`;
+        }
+
+        function reset3DTilt(e) {
+            const card = e.currentTarget;
+            const sheen = card.querySelector('.card-sheen');
+            
+            // Smoothly reset position
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+            
+            // Reset sheen
+            sheen.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+        }
+
+        // --- 4. UI ANIMATIONS ---
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // --- 5. VIEWER CORE (UNTOUCHED) ---
         const viewer = document.getElementById('viewer');
         const canvas = document.getElementById('canvas-element');
         const ctx = canvas.getContext('2d');
@@ -453,46 +554,42 @@
         const arrowPrev = document.getElementById('arrow-prev');
         const arrowNext = document.getElementById('arrow-next');
 
-        // Setup PDF Path
-        const PDF_PATH = './chapter1.pdf'; 
-
-        // Toggle Settings
         document.getElementById('btn-settings').addEventListener('click', (e) => {
             e.stopPropagation();
             settingsMenu.classList.toggle('active');
         });
 
-        // Close settings outside
         document.addEventListener('click', (e) => {
             if (!settingsMenu.contains(e.target) && e.target.id !== 'btn-settings') {
                 settingsMenu.classList.remove('active');
             }
         });
 
-        // Open Viewer
-        async function openViewer() {
+        async function openViewer(pdfUrl, title) {
             viewer.classList.add('open');
             document.body.style.overflow = 'hidden';
             settingsMenu.classList.remove('active');
+            document.getElementById('viewer-title-text').textContent = title;
             
-            if (!pdfDoc) {
-                spinner.style.display = 'block';
-                try {
-                    pdfDoc = await pdfjsLib.getDocument(PDF_PATH).promise;
-                    totalPages = pdfDoc.numPages;
-                    updateUI();
-                    renderPage(currentPage);
-                } catch (err) {
-                    console.error("PDF Load Error:", err);
-                    alert("Could not load PDF. Ensure 'chapter1.pdf' exists.");
-                    closeViewer();
-                }
-            } else {
+            if (pdfDoc) pdfDoc.destroy();
+            preloadedCache.clear();
+            currentPage = 1;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.style.opacity = '0';
+
+            spinner.style.display = 'block';
+            try {
+                pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+                totalPages = pdfDoc.numPages;
+                updateUI();
                 renderPage(currentPage);
+            } catch (err) {
+                console.error("PDF Load Error:", err);
+                alert(`Could not load ${pdfUrl}. Check file path.`);
+                closeViewer();
             }
         }
 
-        // Close Viewer
         function closeViewer() {
             viewer.classList.remove('open');
             document.body.style.overflow = 'auto';
@@ -501,43 +598,32 @@
             preloadedCache.clear(); 
         }
 
-        // Change Direction
         function setDirection(dir) {
             direction = dir;
-            document.querySelectorAll('.dir-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.dir === dir);
-            });
+            document.querySelectorAll('.dir-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.dir === dir));
             updateUI();
         }
 
-        // Change Quality
-        function setQuality(scale) {
+        function setQuality(scale, silent = false) {
             currentScale = scale;
-            document.querySelectorAll('.zoom-btn').forEach(btn => {
-                btn.classList.toggle('active', parseFloat(btn.dataset.scale) === scale);
-            });
-            preloadedCache.clear(); // Clear old quality cache
-            renderPage(currentPage);
+            document.querySelectorAll('.zoom-btn').forEach(btn => btn.classList.toggle('active', parseFloat(btn.dataset.scale) === scale));
+            if(!silent && pdfDoc) {
+                preloadedCache.clear();
+                renderPage(currentPage);
+            }
         }
 
-        // Change Preload Setting
-        function setPreload(val) {
+        function setPreload(val, silent = false) {
             preloadCount = val;
-            document.querySelectorAll('.preload-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.preload == val);
-            });
-            startPreload(); // Trigger immediately
+            document.querySelectorAll('.preload-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.preload == val));
+            if(!silent && pdfDoc) startPreload();
         }
 
-        // Unified Page Change Logic
-        function changePage(intent) {
+        function handleZoneClick(directionClicked) {
             if (isRendering || !pdfDoc) return;
-
-            let step = (intent === 'next') ? 1 : -1;
+            let step = (directionClicked === 'next') ? 1 : -1;
             if (direction === 'rtl') step *= -1;
-
             let newPage = currentPage + step;
-
             if (newPage >= 1 && newPage <= totalPages) {
                 currentPage = newPage;
                 updateUI();
@@ -545,42 +631,30 @@
             }
         }
 
-        function handleZoneClick(clickedZone) {
-            if (clickedZone === 'next') changePage('next');
-            else changePage('prev');
-        }
-
-        // Update UI Elements
         function updateUI() {
             const text = `${currentPage} / ${totalPages}`;
             pageUI.textContent = text;
             mobilePageUI.textContent = text;
 
             if (direction === 'ltr') {
-                arrowPrev.innerHTML = '❮';
-                arrowNext.innerHTML = '❯';
+                arrowPrev.innerHTML = '❮'; arrowNext.innerHTML = '❯';
                 arrowPrev.style.opacity = currentPage <= 1 ? '0.3' : '1';
                 arrowNext.style.opacity = currentPage >= totalPages ? '0.3' : '1';
             } else {
-                arrowPrev.innerHTML = '❯'; 
-                arrowNext.innerHTML = '❮';
+                arrowPrev.innerHTML = '❯'; arrowNext.innerHTML = '❮';
                 arrowPrev.style.opacity = currentPage >= totalPages ? '0.3' : '1';
                 arrowNext.style.opacity = currentPage <= 1 ? '0.3' : '1';
             }
         }
 
-        // Render PDF Page
         async function renderPage(num) {
             if (!pdfDoc) return;
             isRendering = true;
             spinner.style.display = 'block';
             canvas.style.opacity = '0.5';
 
-            // Cleanup distant cache to prevent memory leaks
             for (let [key, val] of preloadedCache.entries()) {
-                if (key !== 'loading' && Math.abs(key - num) > 10) {
-                    preloadedCache.delete(key);
-                }
+                if (key !== 'loading' && Math.abs(key - num) > 8) preloadedCache.delete(key);
             }
 
             try {
@@ -590,11 +664,7 @@
                     canvas.height = cachedCanvas.height;
                     canvas.style.width = cachedCanvas.style.width;
                     canvas.style.height = cachedCanvas.style.height;
-                    
                     ctx.drawImage(cachedCanvas, 0, 0);
-                    canvas.style.opacity = '1';
-                    spinner.style.display = 'none';
-                    isRendering = false;
                 } else {
                     const page = await pdfDoc.getPage(num);
                     const viewport = page.getViewport({ scale: currentScale });
@@ -612,13 +682,11 @@
                         transform: transform,
                         viewport: viewport
                     }).promise;
-                    
-                    canvas.style.opacity = '1';
-                    spinner.style.display = 'none';
-                    isRendering = false;
                 }
-
-                // Start preloading next pages
+                
+                canvas.style.opacity = '1';
+                spinner.style.display = 'none';
+                isRendering = false;
                 startPreload();
 
             } catch (err) {
@@ -627,9 +695,7 @@
             }
         }
 
-        // --- PRELOADING LOGIC ---
         let preloadTimeout = null;
-
         function startPreload() {
             if (preloadCount === 0) return;
             clearTimeout(preloadTimeout);
@@ -642,14 +708,11 @@
                 if (loadedCount >= pagesToLoad || pageToLoad > totalPages) return;
                 
                 if (preloadedCache.has(pageToLoad)) {
-                    pageToLoad++;
-                    loadedCount++;
-                    loadNextInQueue();
+                    pageToLoad++; loadedCount++; loadNextInQueue();
                 } else {
                     preloadPage(pageToLoad).then(() => {
-                        pageToLoad++;
-                        loadedCount++;
-                        preloadTimeout = setTimeout(loadNextInQueue, 150); // Prevent UI block
+                        pageToLoad++; loadedCount++;
+                        preloadTimeout = setTimeout(loadNextInQueue, 100);
                     });
                 }
             };
@@ -682,12 +745,10 @@
 
                 preloadedCache.set(num, offCanvas);
             } catch (e) {
-                console.log("Preload error:", e);
                 preloadedCache.delete(num); 
             }
         }
 
-        // Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
             if (viewer.classList.contains('open')) {
                 if (e.key === 'Escape') closeViewer();
