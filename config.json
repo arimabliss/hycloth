@@ -1,34 +1,48 @@
 {
   "site": {
     "title": "SOULSTAKER",
-    "subtitle": "A comic by arima",
-    "heroDesc": "SOULSTAKER: a new realm where world is not just a peaceful land, it's all chaos! Experience a epic horror, dark fantasy and 4k coloured comic written and produced by aarav~"
+    "tagline": "A Private Series",
+    "heroDesc": "Write your synopsis here. It appears under the title on the landing page.",
+    "author": "Your Name",
+    "artist": "Your Name",
+    "status": "Ongoing",
+    "genres": ["Dark Fantasy", "Action", "Drama"],
+    "accent": "#d4af37",
+    "storageKey": "soulstaker",
+    "passcodeHash": ""
   },
   "assets": {
-    "bgDesktop": "bng.png",
-    "bgMobile": "bngmob.png",
-    "coverImage": "cover.jpg"
+    "bgDesktop": "assets/bg-desktop.jpg",
+    "bgMobile": "assets/bg-mobile.jpg",
+    "cover": "assets/cover.jpg"
   },
   "defaults": {
+    "direction": "rtl",
     "quality": 1.5,
-    "preload": 5,
-    "direction": "ltr"
+    "preload": 4,
+    "mode": "single",
+    "fit": "screen"
   },
   "chapters": [
     {
       "id": 1,
-      "title": "The First Glimpse",
-      "file": "chapter1.pdf"
+      "title": "The First Stake",
+      "file": "chapter3.pdf",
+      "date": "2026-09-14",
+      "cover": "assets/ch01.jpg"
     },
     {
       "id": 2,
-      "title": "dimensional drift",
-      "file": "chapter2.pdf"
+      "title": "Ashes and Oaths",
+      "file": "chapter2.pdf",
+      "date": "2026-10-02"
     },
     {
       "id": 3,
-      "title": "here it begins?",
-      "file": "chapter3.pdf"
+      "title": "What the Dark Remembers",
+      "file": "chapter3.pdf",
+      "date": "2026-10-29",
+      "new": true
     }
   ]
 }
