@@ -1,10 +1,10 @@
 {
   "site": {
     "title": "SOULSTAKER",
-    "tagline": "A comic which is made for you",
-    "heroDesc": "Write your synopsis here. It appears under the title on the landing page.",
-    "author": "arima kousei",
-    "artist": "aarav jha",
+    "tagline": "A action packed well written story",
+    "heroDesc": "SOULSTAKER: a new realm where world is not just a peaceful land, it's all chaos! Experience a epic horror, dark fantasy and 4k coloured comic written and produced by aarav~",
+    "author": "aarav",
+    "artist": "aarav",
     "status": "Ongoing",
     "genres": ["Dark Fantasy", "Action", "Drama"],
     "accent": "#d4af37",
@@ -28,21 +28,21 @@
       "id": 1,
       "title": "The First glimpse",
       "file": "chapters/chapter1.pdf",
-      "date": "2026-09-14",
+      "date": "2026-10-18",
       "cover": "assets/ch01.png"
     },
     {
       "id": 2,
       "title": "Dimensional drift",
       "file": "chapters/chapter2.pdf",
-      "date": "2026-10-02",
+      "date": "2026-10-31",
       "cover": "assets/ch02.png"
     },
     {
       "id": 3,
       "title": "here it begins?",
       "file": "chapters/chapter3.pdf",
-      "date": "2026-10-29",
+      "date": "2026-11-5",
       "cover": "assets/ch03.png",
       "new": true
     }
