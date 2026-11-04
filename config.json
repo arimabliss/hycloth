@@ -1,10 +1,10 @@
 {
   "site": {
     "title": "SOULSTAKER",
-    "tagline": "A Private Series",
+    "tagline": "A comic which is made for you",
     "heroDesc": "Write your synopsis here. It appears under the title on the landing page.",
-    "author": "Your Name",
-    "artist": "Your Name",
+    "author": "arima kousei",
+    "artist": "aarav jha",
     "status": "Ongoing",
     "genres": ["Dark Fantasy", "Action", "Drama"],
     "accent": "#d4af37",
@@ -12,12 +12,12 @@
     "passcodeHash": ""
   },
   "assets": {
-    "bgDesktop": "assets/bg-desktop.jpg",
-    "bgMobile": "assets/bg-mobile.jpg",
-    "cover": "assets/cover.jpg"
+    "bgDesktop": "assets/bng.png",
+    "bgMobile": "assets/bngmob.png",
+    "cover": "assets/cover.png"
   },
   "defaults": {
-    "direction": "rtl",
+    "direction": "ltr",
     "quality": 1.5,
     "preload": 4,
     "mode": "single",
@@ -29,21 +29,21 @@
       "title": "The First glimpse"
       "file": "chapters/chapter1.pdf",
       "date": "2026-09-14",
-      "cover": "assets/ch01.jpg"
+      "cover": "assets/ch01.png"
     },
     {
       "id": 2,
       "title": "Dimensional drift",
       "file": "chapters/chapter2.pdf",
       "date": "2026-10-02"
-      "cover": "assets/ch02.jpg"
+      "cover": "assets/ch02.png"
     },
     {
       "id": 3,
       "title": "here it begins?",
       "file": "chapters/chapter3.pdf",
       "date": "2026-10-29",
-      "cover": "assets/ch03.jpg"
+      "cover": "assets/ch03.png"
       "new": true
     }
   ]
